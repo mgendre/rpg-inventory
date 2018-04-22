@@ -20,7 +20,30 @@ spring:
     change-log: classpath:db/liquibase-main.xml
   jackson:
     serialization.write_dates_as_timestamps: false
+
+  security:
+    oauth2:
+      client:
+        registration:
+          rpgi:
+            client-id: rpgi-web
+            client-secret: 2630ec46-05e9-4803-9010-727b9d08d57b
+            client-name: rpgi-web
+            provider: keycloak
+            scope: openid, profile
+            redirect-uri-template: "{baseUrl}/login/oauth2/code/{registrationId}"
+            authorization-grant-type: authorization_code
+        provider:
+          keycloak:
+            token-uri: ${keycloak-client.server-url}/realms/${keycloak-client.realm}/protocol/openid-connect/token
+            authorization-uri: ${keycloak-client.server-url}/realms/${keycloak-client.realm}/protocol/openid-connect/auth
+            user-info-uri: ${keycloak-client.server-url}/realms/${keycloak-client.realm}/protocol/openid-connect/userinfo
+            jwk-set-uri: ${keycloak-client.server-url}/realms/${keycloak-client.realm}/protocol/openid-connect/certs
+            user-name-attribute: preferred_username
   application:
     name: RPG Inventory - WEB
     admin:
       enabled: false
+keycloak-client:
+  server-url: http://localhost:8180/auth
+  realm: rpgi
