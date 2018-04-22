@@ -199,6 +199,7 @@
                         <database>
                             <name>org.jooq.util.postgres.PostgresDatabase</name>
                             <includes>.*</includes>
+                            <excludes>databasechangelog|databasechangeloglock</excludes>
                             <schemata>
                                 <schema>
                                     <inputSchema>public</inputSchema>
