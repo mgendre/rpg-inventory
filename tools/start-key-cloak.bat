@@ -1,1 +1,0 @@
-keycloak-4.0.0.Beta1/bin/standalone.bat -Djboss.socket.binding.port-offset=100
