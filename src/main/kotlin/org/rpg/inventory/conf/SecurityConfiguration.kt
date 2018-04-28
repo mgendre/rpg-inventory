@@ -15,7 +15,7 @@ import org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequest
 @EnableWebSecurity
 class SecurityConfig : WebSecurityConfigurerAdapter() {
 
-  @Value("\${keycloak-client.realm}") lateinit var realm: String
+  @Value("\${application.keycloak-client.realm}") lateinit var realm: String
 
   override fun configure(http: HttpSecurity) {
     http

@@ -1,8 +1,0 @@
-{
-  "realm": "rpgi",
-  "auth-server-url": "http://localhost:8180/auth",
-  "ssl-required": "none",
-  "resource": "rpgi-web",
-  "public-client": true,
-  "confidential-port": 0
-}
