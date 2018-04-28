@@ -19,6 +19,7 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
 
   override fun configure(http: HttpSecurity) {
     http
+      .anonymous().disable()
       .sessionManagement()
       .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).and()
       .authorizeRequests()
