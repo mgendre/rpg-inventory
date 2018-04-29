@@ -1,33 +1,48 @@
 package org.rpg.inventory.conf
 
-import org.springframework.beans.factory.annotation.Value
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
-import org.springframework.security.config.http.SessionCreationPolicy
-import org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter
+import org.springframework.security.core.userdetails.User
+import org.springframework.security.crypto.factory.PasswordEncoderFactories
+import org.springframework.security.crypto.password.PasswordEncoder
+
+
+
 
 @Configuration
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true, jsr250Enabled = true, securedEnabled = true)
 @EnableWebSecurity
 class SecurityConfig : WebSecurityConfigurerAdapter() {
 
-  @Value("\${application.keycloak-client.realm}") lateinit var realm: String
-
   override fun configure(http: HttpSecurity) {
     http
-      .anonymous().disable()
-      .sessionManagement()
-      .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).and()
-      .authorizeRequests()
-        .antMatchers("/").permitAll().and()
-      .oauth2Login()
-      .loginPage("${OAuth2AuthorizationRequestRedirectFilter.DEFAULT_AUTHORIZATION_REQUEST_BASE_URI}/$realm")
+      .csrf().disable()
+      .authorizeRequests().antMatchers("/**").permitAll().and()
+      .formLogin()
+        .loginPage("/#/login")
+        .usernameParameter("user")
+        .passwordParameter("secret")
+        .loginProcessingUrl("/auth/login")
+        .failureUrl("/#/login?error")
+        .defaultSuccessUrl("/#/main")
+        .permitAll().and()
+      .logout()
+        .clearAuthentication(true)
+        .logoutUrl("/auth/logout")
+        .permitAll()
   }
 
-  override fun configure(auth: AuthenticationManagerBuilder) {
+  @Autowired
+  @Throws(Exception::class)
+  fun configureGlobal(auth: AuthenticationManagerBuilder) {
+    val encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder()
+    auth
+      .inMemoryAuthentication()
+      .withUser("test").password(encoder.encode("test")).roles("USER")
   }
 }

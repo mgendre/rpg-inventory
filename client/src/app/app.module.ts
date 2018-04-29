@@ -1,10 +1,12 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {APP_INITIALIZER, NgModule} from '@angular/core';
-
-import {KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
-import {initializer} from './utils/app-init';
+import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
+import {SecurityModule} from "./security/security.module";
+import {LoginModule} from "./login/login.module";
+import {RouterModule} from "@angular/router";
+import {HomeModule} from "./home/home.module";
+import {APP_ROUTE} from "./app.route";
 
 
 @NgModule({
@@ -13,15 +15,14 @@ import {AppComponent} from './app.component';
   ],
   imports: [
     BrowserModule,
-    KeycloakAngularModule
+    RouterModule,
+    LoginModule,
+    HomeModule,
+    SecurityModule,
+    RouterModule.forRoot([APP_ROUTE], {useHash: true})
   ],
   providers: [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializer,
-      multi: true,
-      deps: [KeycloakService]
-    }
+
   ],
   bootstrap: [AppComponent]
 })

@@ -1,16 +1,16 @@
 package org.rpg.inventory.util
 
 import org.springframework.security.core.context.SecurityContextHolder
-import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser
+import org.springframework.security.core.userdetails.UserDetails
 import kotlin.streams.toList
 
 class SecurityUtils {
   companion object {
-    fun getCurrentUserPrincipal() : DefaultOidcUser? {
+    fun getCurrentUserPrincipal() : UserDetails? {
       if (isCurrentUserAuthenticated()) {
         val auth = SecurityContextHolder.getContext().authentication
-        if (auth.principal is DefaultOidcUser) {
-          return auth.principal as DefaultOidcUser
+        if (auth.principal is UserDetails) {
+          return auth.principal as UserDetails
         }
       }
       return null
@@ -25,7 +25,7 @@ class SecurityUtils {
 
     fun getCurrentUserUsername() : String? {
       if (isCurrentUserAuthenticated()) {
-        return getCurrentUserPrincipal()?.name
+        return getCurrentUserPrincipal()?.username
       }
       return null
     }
