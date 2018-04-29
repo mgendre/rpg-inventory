@@ -7,6 +7,8 @@ import {LoginModule} from "./login/login.module";
 import {RouterModule} from "@angular/router";
 import {HomeModule} from "./home/home.module";
 import {APP_ROUTE} from "./app.route";
+import {LayoutModule} from "./layout/layout.module";
+import {SiteModule} from "./site/site.module";
 
 
 @NgModule({
@@ -16,6 +18,8 @@ import {APP_ROUTE} from "./app.route";
   imports: [
     BrowserModule,
     RouterModule,
+    SiteModule,
+    LayoutModule,
     LoginModule,
     HomeModule,
     SecurityModule,

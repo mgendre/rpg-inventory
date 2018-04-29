@@ -17,9 +17,11 @@
       "tsconfig": "tsconfig.app.json",
       "prefix": "rpgi",
       "styles": [
-        "styles.css"
+        "styles.scss"
       ],
       "scripts": [
+        "../../node_modules/jquery/dist/jquery.js",
+        "../../node_modules/bootstrap/dist/js/bootstrap.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
