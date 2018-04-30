@@ -26,7 +26,8 @@ class SecurityConfig(
       .authorizeRequests().antMatchers("/**").permitAll().and()
       .exceptionHandling().authenticationEntryPoint(UnauthorizedEntryPoint()).and()
       .oauth2Login()
-      .successHandler(successHandler)
+        .successHandler(successHandler)
+        .failureUrl("/?login=error")
         .permitAll().and()
   }
 
