@@ -16,7 +16,9 @@
       <ul *ngIf="!authentication.authenticated"
           class="navbar-nav pull-right">
         <li class="nav-item">
-          <a class="nav-link" href="" routerLinkActive="active" [routerLink]="['/login']">Login</a>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/login']">
+            <fa-icon [icon]="['far', 'user']"></fa-icon> Login
+          </a>
         </li>
       </ul>
       <ul *ngIf="authentication.authenticated"
@@ -27,9 +29,9 @@
              id="account-dropdown"
              data-toggle="dropdown"
              aria-haspopup="true"
-             aria-expanded="false"><fa-icon icon="coffee"></fa-icon> {{authentication.username}}</a>
+             aria-expanded="false"><fa-icon [icon]="['fas', 'user']"></fa-icon> {{authentication.username}}</a>
           <div class="dropdown-menu" aria-labelledby="dropdown08">
-            <a class="dropdown-item" href="" (click)="logout()">Logout</a>
+            <a class="dropdown-item" [routerLink]="" (click)="logout()">Logout</a>
           </div>
         </li>
       </ul>

@@ -2,9 +2,11 @@ package org.rpg.inventory.rest
 
 import org.rpg.inventory.rest.dto.AccountDTO
 import org.rpg.inventory.util.SecurityUtils
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import javax.servlet.http.HttpServletRequest
 
 
 @RestController
@@ -17,5 +19,11 @@ class AccountController {
       username = SecurityUtils.getCurrentUserUsername(),
       roles = SecurityUtils.getCurrentUserRoles()
     )
+  }
+
+  @GetMapping("/logout")
+  fun logout(request: HttpServletRequest) {
+    request.getSession(false)?.invalidate()
+    SecurityContextHolder.clearContext()
   }
 }

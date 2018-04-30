@@ -3,11 +3,13 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Observable} from "rxjs/Observable";
+import {Router} from '@angular/router';
 
 @Injectable()
 export class SecurityService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private router: Router) {
     this.loadSecurity();
   }
 
@@ -24,7 +26,10 @@ export class SecurityService {
   }
 
   public logout() {
-    location.href = "/auth/logout"
+    this.http.get<UserInfo>("/api/v1/account/logout").toPromise().then(() => {
+      this.loadSecurity();
+      this.router.navigate(['site']);
+    });
   }
 
   private loadSecurity() {

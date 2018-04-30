@@ -1,16 +1,22 @@
 package org.rpg.inventory.util
 
-import org.springframework.security.core.Authentication
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.UserDetails
+import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser
 import kotlin.streams.toList
 
 class SecurityUtils {
   companion object {
-    fun getCurrentUserPrincipal() : UserDetails? {
+    fun getCurrentUserUsername() : String? {
       val auth = SecurityContextHolder.getContext().authentication
-      if (auth != null && auth.principal is UserDetails) {
-        return auth.principal as UserDetails
+      if (auth != null) {
+        if(auth.principal is UserDetails) {
+          return (auth.principal as UserDetails).username
+        }
+        else if(auth.principal is DefaultOidcUser) {
+          val user = auth.principal as DefaultOidcUser
+          return user.claims["email"] as String
+        }
       }
       return null
     }
@@ -21,14 +27,6 @@ class SecurityUtils {
           !getCurrentUserUsername().isNullOrBlank()
       }
       return false
-    }
-
-    fun getCurrentUserUsername() : String? {
-      val ud = getCurrentUserPrincipal()
-      if (ud != null) {
-        return ud.username
-      }
-      return null
     }
 
     fun getCurrentUserRoles() : List<String> {
