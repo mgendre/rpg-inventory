@@ -49,6 +49,10 @@
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-jooq</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
       <optional>true</optional>
     </dependency>
@@ -69,29 +73,6 @@
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-oauth2-jose</artifactId>
-    </dependency>
-
-
-    <!-- JOOQ -->
-    <dependency>
-      <groupId>org.jooq</groupId>
-      <artifactId>jooq</artifactId>
-      <version>${jooq.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.jooq</groupId>
-      <artifactId>jooq-meta</artifactId>
-      <version>${jooq.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.jooq</groupId>
-      <artifactId>jooq-codegen</artifactId>
-      <version>${jooq.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.jooq</groupId>
-      <artifactId>jool</artifactId>
-      <version>${jool.version}</version>
     </dependency>
 
     <!-- postgres -->

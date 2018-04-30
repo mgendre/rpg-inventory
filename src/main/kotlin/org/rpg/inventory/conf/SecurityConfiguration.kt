@@ -1,5 +1,6 @@
 package org.rpg.inventory.conf
 
+import org.rpg.inventory.conf.util.AppSuccessAuthentication
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
@@ -15,14 +16,18 @@ import javax.servlet.http.HttpServletResponse
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true, jsr250Enabled = true, securedEnabled = true)
 @EnableWebSecurity
-class SecurityConfig : WebSecurityConfigurerAdapter() {
+class SecurityConfig(
+  val successHandler: AppSuccessAuthentication
+) : WebSecurityConfigurerAdapter() {
 
   override fun configure(http: HttpSecurity) {
     http
       .csrf().disable()
       .authorizeRequests().antMatchers("/**").permitAll().and()
       .exceptionHandling().authenticationEntryPoint(UnauthorizedEntryPoint()).and()
-      .oauth2Login().permitAll().and()
+      .oauth2Login()
+      .successHandler(successHandler)
+        .permitAll().and()
   }
 
   inner class UnauthorizedEntryPoint : AuthenticationEntryPoint {
