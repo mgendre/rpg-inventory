@@ -1,6 +1,6 @@
 package org.rpg.inventory.conf.util
 
-import org.rpg.inventory.UserService
+import org.rpg.inventory.service.UserService
 import org.rpg.inventory.util.SecurityUtils
 import org.springframework.security.core.Authentication
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler

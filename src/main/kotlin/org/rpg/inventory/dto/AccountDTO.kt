@@ -1,4 +1,4 @@
-package org.rpg.inventory.rest.dto
+package org.rpg.inventory.dto
 
 class AccountDTO(
   val username: String?,

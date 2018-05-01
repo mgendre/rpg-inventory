@@ -30,8 +30,8 @@ spring:
       client:
         registration:
           google:
-            client-id: 701684887114-hr9423t9fj3l8lnigo4j0nbk3ls7ds73.apps.googleusercontent.com
-            client-secret: 34I5X1o4UjuNyg4NBodFY9EF
+            client-id: PLEASE-OVERRIDE
+            client-secret: PLEASE-OVERRIDE
 
   application:
     name: RPG Inventory - WEB
