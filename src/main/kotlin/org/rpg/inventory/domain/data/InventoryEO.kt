@@ -4,16 +4,21 @@ import javax.persistence.*
 import javax.validation.constraints.NotNull
 
 @Entity
-@Table(name = "users")
-class UserEO(
+@Table(name = "inventories")
+class InventoryEO(
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
   val id: Long?,
 
   @NotNull
-  @Column(name = "username")
-  val username: String
+  @Column(name = "data")
+  var data: String?
 ) {
-  constructor() : this(null, "")
+
+  @NotNull
+  @ManyToOne
+  @JoinColumn(name = "character_id", nullable = false)
+  lateinit var character: CharacterEO
+
 }

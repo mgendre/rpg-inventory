@@ -5,10 +5,10 @@
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
   <changeSet author="mg" id="01a_users">
-    <createTable tableName="user_rpgi">
+    <createTable tableName="users">
       <column name="id" type="bigint" autoIncrement="true">
         <constraints primaryKey="true"
-                     primaryKeyName="user_pk"
+                     primaryKeyName="users_pk"
                      nullable="false"/>
       </column>
       <column name="username" type="varchar(255)">
@@ -17,10 +17,10 @@
     </createTable>
   </changeSet>
   <changeSet author="mg" id="01b_character">
-    <createTable tableName="character">
+    <createTable tableName="characters">
       <column name="id" type="bigint" autoIncrement="true">
         <constraints primaryKey="true"
-                     primaryKeyName="inventory_pk"
+                     primaryKeyName="characters_pk"
                      nullable="false"/>
       </column>
       <column name="user_id" type="bigint">
@@ -30,10 +30,30 @@
         <constraints nullable="false"/>
       </column>
     </createTable>
-    <addForeignKeyConstraint baseTableName="character"
+    <addForeignKeyConstraint baseTableName="characters"
                              baseColumnNames="user_id"
-                             referencedTableName="user_rpgi"
+                             referencedTableName="users"
                              referencedColumnNames="id"
-                             constraintName="fk_character_user_id"/>
+                             constraintName="fk_characters_users_id"/>
+  </changeSet>
+  <changeSet author="mg" id="01c_inventory">
+    <createTable tableName="inventories">
+      <column name="id" type="bigint" autoIncrement="true">
+        <constraints primaryKey="true"
+                     primaryKeyName="inventories_pk"
+                     nullable="false"/>
+      </column>
+      <column name="character_id" type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="data" type="varchar(10485760)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <addForeignKeyConstraint baseTableName="inventories"
+                             baseColumnNames="character_id"
+                             referencedTableName="characters"
+                             referencedColumnNames="id"
+                             constraintName="fk_inventories_characters_id"/>
   </changeSet>
 </databaseChangeLog>
