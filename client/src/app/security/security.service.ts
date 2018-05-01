@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Observable} from "rxjs/Observable";
 import {Router} from '@angular/router';
+import {reject} from "q";
 
 @Injectable()
 export class SecurityService {
@@ -14,8 +15,7 @@ export class SecurityService {
   }
 
   private authentication = new BehaviorSubject<UserInfo>(null);
-
-  static auth: any = {};
+  private authenticationSet = false;
 
   public getUserInfo(): Observable<UserInfo> {
     return this.authentication;
@@ -32,8 +32,25 @@ export class SecurityService {
     });
   }
 
+  public getSecurityContext() {
+    return new Promise((resolve, reject) => {
+      if (this.authenticationSet) {
+        resolve(this.authentication.getValue());
+      }
+      else {
+        const subscription = this.authentication.subscribe((val) => {
+          if (this.authenticationSet) {
+            resolve(val);
+            subscription.unsubscribe();
+          }
+        });
+      }
+    });
+  }
+
   private loadSecurity() {
     this.http.get<UserInfo>("/api/v1/account").toPromise().then((account) => {
+      this.authenticationSet = true;
       this.authentication.next(account);
     });
   }

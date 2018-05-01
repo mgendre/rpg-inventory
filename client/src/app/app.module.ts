@@ -26,7 +26,6 @@ import {SiteModule} from "./site/site.module";
     RouterModule.forRoot([APP_ROUTE], {useHash: true})
   ],
   providers: [
-
   ],
   bootstrap: [AppComponent]
 })

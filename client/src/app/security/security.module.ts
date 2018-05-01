@@ -1,6 +1,7 @@
 import {HttpClientModule} from "@angular/common/http";
 import {SecurityService} from "./security.service";
 import {NgModule} from "@angular/core";
+import {AuthenticationGuard} from "./authentication-guard.service";
 
 @NgModule({
   imports: [
@@ -9,7 +10,8 @@ import {NgModule} from "@angular/core";
   exports: [
   ],
   providers: [
-    SecurityService
+    SecurityService,
+    AuthenticationGuard
   ]
 })
 export class SecurityModule {
