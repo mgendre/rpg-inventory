@@ -7,6 +7,7 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {fas} from '@fortawesome/free-solid-svg-icons';
 import {far} from '@fortawesome/free-regular-svg-icons';
+import {SecurityModule} from "../security/security.module";
 
 library.add(fas, far);
 
@@ -15,7 +16,8 @@ library.add(fas, far);
     BrowserModule,
     RouterModule,
     CommonModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    SecurityModule
   ],
   exports: [
     NavigationComponent
