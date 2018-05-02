@@ -4,7 +4,6 @@ import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Observable} from "rxjs/Observable";
 import {Router} from '@angular/router';
-import {reject} from "q";
 
 @Injectable()
 export class SecurityService {
@@ -33,7 +32,7 @@ export class SecurityService {
   }
 
   public getSecurityContext() {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       if (this.authenticationSet) {
         resolve(this.authentication.getValue());
       }

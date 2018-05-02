@@ -1,0 +1,14 @@
+<div class="characters" *ngIf="characters != null">
+  <div class="main-section">
+    <h1>Characters</h1>
+  </div>
+
+  <div class="container" *ngIf="characters.length === 0">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">How to start</h5>
+        Everything is linked to your <strong>character</strong>. Begin by creating a new character.
+      </div>
+    </div>
+  </div>
+</div>

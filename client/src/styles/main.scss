@@ -1,0 +1,17 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "variables";
+.rpgi {
+  .rpgi-hidden {
+    display: none;
+  }
+
+  .main-navbar {
+    background: $colorNavbarPrimary;
+    color: $colorNavbarFont;
+  }
+  .main-section {
+    border-top: 1px solid #444444;
+    background: $colorNavbarSecondary;
+    color: $colorNavbarFont;
+  }
+}
