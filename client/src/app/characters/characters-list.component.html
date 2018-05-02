@@ -1,14 +1,24 @@
 <div class="characters" *ngIf="characters != null">
-  <div class="main-section">
-    <h1>Characters</h1>
-  </div>
+  <div class="root-container">
 
-  <div class="container" *ngIf="characters.length === 0">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">How to start</h5>
-        Everything is linked to your <strong>character</strong>. Begin by creating a new character.
+    <div *ngIf="characters.length > 0">
+      <h3 class="root-container-title">Please choose a character</h3>
+      <div class="list-group">
+        <a [routerLink]="['/characters/' + char.id]"
+           class="list-group-item list-group-item-action"
+           *ngFor="let char of characters">
+          <h5 class="mb-1">{{char.name}}</h5>
+        </a>
       </div>
+    </div>
+
+    <div *ngIf="characters.length === 0">
+      <h3 class="root-container-title">How to start</h3>
+      Everything is linked to your <strong>character</strong>. Begin by creating a new character.
+    </div>
+
+    <div class="root-container-controls">
+      <button type="button" class="btn btn-primary">New character</button>
     </div>
   </div>
 </div>

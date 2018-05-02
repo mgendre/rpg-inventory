@@ -8,7 +8,7 @@ import {RouterModule} from "@angular/router";
 import {APP_ROUTE} from "./app.route";
 import {LayoutModule} from "./layout/layout.module";
 import {SiteModule} from "./site/site.module";
-import {CharactersComponent} from './characters/characters.component';
+import {CharactersModule} from "./characters/characters.module";
 
 
 @NgModule({
@@ -21,7 +21,7 @@ import {CharactersComponent} from './characters/characters.component';
     SiteModule,
     LayoutModule,
     LoginModule,
-    CharactersComponent,
+    CharactersModule,
     SecurityModule,
     RouterModule.forRoot([APP_ROUTE], {useHash: true})
   ],

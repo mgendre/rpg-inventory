@@ -1,10 +1,11 @@
 import {NgModule} from "@angular/core";
-import {CharactersComponent} from "./characters.component";
 import {APIModule} from '../api/api.module';
 import {CommonModule} from '@angular/common';
 import {CharactersListComponent} from './characters-list.component';
 import {RouterModule} from '@angular/router';
 import {CHARACTERS_ROUTE} from './characters.route';
+import {CharacterComponent} from "./character.component";
+import {CharactersRootComponent} from "./characters-root.component";
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import {CHARACTERS_ROUTE} from './characters.route';
   providers: [
   ],
   declarations: [
-    CharactersComponent,
+    CharactersRootComponent,
+    CharacterComponent,
     CharactersListComponent
   ]
 })
