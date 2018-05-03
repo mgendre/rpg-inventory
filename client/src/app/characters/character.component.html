@@ -1,5 +1,22 @@
 <div class="characters" *ngIf="character != null">
   <div class="main-section">
-    <h3>{{character.name}}</h3>
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <a [routerLink]="['/characters/:id/sheet']"
+         routerLinkActive="active"
+         class="btn btn-secondary">
+        Character sheet
+      </a>
+      <a [routerLink]="['/characters/:id/inventory']"
+         routerLinkActive="active"
+         class="btn btn-secondary">
+        Inventory
+      </a>
+      <a [routerLink]="['/characters/:id/story']"
+         routerLinkActive="active"
+         class="btn btn-secondary">
+        Story
+      </a>
+    </div>
+    <div class="title">{{character.name}}</div>
   </div>
 </div>
