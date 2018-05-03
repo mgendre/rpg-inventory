@@ -1,6 +1,7 @@
 package org.rpg.inventory.domain.data
 
 import org.hibernate.validator.constraints.Length
+import org.rpg.inventory.domain.data.enums.SupportedRPGType
 import javax.persistence.*
 import javax.validation.constraints.NotNull
 
@@ -15,7 +16,12 @@ class CharacterEO(
   @NotNull
   @Column(name = "name")
   @Length(max = 50)
-  val name: String
+  val name: String,
+
+  @Enumerated(EnumType.STRING)
+  @NotNull
+  @Column(name = "rpg_type", nullable = false)
+  val rpgType: SupportedRPGType
 ) {
 
   @NotNull

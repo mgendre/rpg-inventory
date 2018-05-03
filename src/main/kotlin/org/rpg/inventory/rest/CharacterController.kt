@@ -19,9 +19,14 @@ class CharacterController(val characterService: CharacterService,
   }
 
   @GetMapping
-  fun get(): List<CharacterDTO> {
+  fun list(): List<CharacterDTO> {
     return characterService.getCharactersOfConnectedUser().map {
       CharacterDTO.from(it)
     }
+  }
+
+  @GetMapping("/{id}")
+  fun get(@PathVariable id: Long): CharacterDTO {
+    return CharacterDTO.from(characterService.getCharacter(id))
   }
 }

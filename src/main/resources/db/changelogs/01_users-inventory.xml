@@ -29,6 +29,9 @@
       <column name="name" type="varchar(50)">
         <constraints nullable="false"/>
       </column>
+      <column name="rpg_type" type="varchar(20)">
+        <constraints nullable="false"/>
+      </column>
     </createTable>
     <addForeignKeyConstraint baseTableName="characters"
                              baseColumnNames="user_id"

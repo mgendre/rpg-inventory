@@ -1,0 +1,12 @@
+<div class="characters" *ngIf="character">
+  <div class="root-container">
+
+    <h3 *ngIf="isCreation">New character</h3>
+    <h3 *ngIf="!isCreation">Edit character {{originalCharacter.name}}</h3>
+
+    <div class="root-container-controls">
+      <button type="button" class="btn btn-default pull-left" (click)="cancel()">Cancel</button>
+      <button type="button" class="btn btn-primary" (click)="save()">Save</button>
+    </div>
+  </div>
+</div>

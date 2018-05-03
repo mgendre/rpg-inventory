@@ -6,6 +6,7 @@ import {RouterModule} from '@angular/router';
 import {CHARACTERS_ROUTE} from './characters.route';
 import {CharacterComponent} from "./character.component";
 import {CharactersRootComponent} from "./characters-root.component";
+import {CharacterEditComponent} from "./character-edit.component";
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import {CharactersRootComponent} from "./characters-root.component";
   declarations: [
     CharactersRootComponent,
     CharacterComponent,
-    CharactersListComponent
+    CharactersListComponent,
+    CharacterEditComponent
   ]
 })
 export class CharactersModule {
