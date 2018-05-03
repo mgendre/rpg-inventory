@@ -8,6 +8,7 @@ import {CharacterComponent} from "./character.component";
 import {CharactersRootComponent} from "./characters-root.component";
 import {CharacterEditComponent} from "./character-edit.component";
 import {ReactiveFormsModule} from "@angular/forms";
+import {CharacterDataStoreService} from "./character-datastore";
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import {ReactiveFormsModule} from "@angular/forms";
   exports: [
   ],
   providers: [
+    CharacterDataStoreService
   ],
   declarations: [
     CharactersRootComponent,

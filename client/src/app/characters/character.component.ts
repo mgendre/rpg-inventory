@@ -1,22 +1,42 @@
-import {AfterViewInit, Component} from '@angular/core';
-import {Character, CharactersApiService} from '../api/characters-api.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Character} from '../api/characters-api.service';
+import {CharacterDataStoreService} from "./character-datastore";
+import {Subscription} from "rxjs/Subscription";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'rpgi-character',
   templateUrl: './character.component.html',
   styleUrls: []
 })
-export class CharacterComponent implements AfterViewInit {
+export class CharacterComponent implements OnInit, OnDestroy {
 
-  characters: Character[] = null;
+  character: Character = null;
+
+  private routeSubscription: Subscription = null;
+  private storeSubscription: Subscription = null;
 
   constructor(
-    private characterApiService: CharactersApiService
+    private route: ActivatedRoute,
+    private characterDataStore: CharacterDataStoreService
   ){}
 
-  ngAfterViewInit(): void {
-    this.characterApiService.findConnectedUserCharacters().then((characters) => {
-      this.characters = characters;
+  ngOnInit(): void {
+    this.storeSubscription = this.characterDataStore.getCharacterStore().subscribe((chr) => {
+      this.character = null;
+      if (chr) {
+        this.character = chr.character;
+      }
     });
+    this.routeSubscription = this.route.params.subscribe(params => {
+      if (params.id) {
+        this.characterDataStore.loadCharacter(params.id);
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.routeSubscription.unsubscribe();
+    this.storeSubscription.unsubscribe();
   }
 }
