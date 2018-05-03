@@ -7,10 +7,12 @@ import {CHARACTERS_ROUTE} from './characters.route';
 import {CharacterComponent} from "./character.component";
 import {CharactersRootComponent} from "./characters-root.component";
 import {CharacterEditComponent} from "./character-edit.component";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   imports: [
     RouterModule.forRoot([CHARACTERS_ROUTE], {useHash: true}),
+    ReactiveFormsModule,
     CommonModule,
     APIModule
   ],

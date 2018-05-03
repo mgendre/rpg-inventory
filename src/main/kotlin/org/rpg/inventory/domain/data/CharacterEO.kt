@@ -15,7 +15,7 @@ class CharacterEO(
 
   @NotNull
   @Column(name = "name")
-  @Length(max = 50)
+  @Length(max = 100)
   val name: String,
 
   @Enumerated(EnumType.STRING)

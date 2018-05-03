@@ -12,8 +12,12 @@ export class CharactersApiService {
     return this.http.get<Character[]>('/api/v1/characters').toPromise();
   }
 
-  public getCharacter(id: number) {
+  public get(id: number) {
     return this.http.get<Character>(`/api/v1/characters/${id}`).toPromise();
+  }
+
+  public save(character: Character): Promise<Character> {
+    return this.http.post<Character>(`/api/v1/characters`, character).toPromise();
   }
 }
 

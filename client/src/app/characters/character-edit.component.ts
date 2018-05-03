@@ -1,19 +1,22 @@
-import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Character, CharactersApiService} from '../api/characters-api.service';
 import {Location} from '@angular/common';
 import {ActivatedRoute} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'rpgi-character-edit',
   templateUrl: './character-edit.component.html',
   styleUrls: []
 })
-export class CharacterEditComponent implements AfterViewInit, OnInit, OnDestroy {
+export class CharacterEditComponent implements OnInit, OnDestroy {
 
   character: Character = null;
   isCreation = false;
   originalCharacter = null;
+
+  characterForm: FormGroup;
 
   private routeSubscription: Subscription = null;
   private characterId: number = null;
@@ -27,7 +30,7 @@ export class CharacterEditComponent implements AfterViewInit, OnInit, OnDestroy 
 
   private loadCharacter() {
     if (this.characterId) {
-      this.characterApiService.getCharacter(this.characterId).then((char) => {
+      this.characterApiService.get(this.characterId).then((char) => {
         this.character = char;
         this.originalCharacter = {...char};
       });
@@ -40,15 +43,13 @@ export class CharacterEditComponent implements AfterViewInit, OnInit, OnDestroy 
   }
 
   save() {
-    alert('save');
+    this.characterApiService.save(this.character).then(() => {
+      this.cancel();
+    });
   }
 
   cancel() {
     this.location.back();
-  }
-
-  ngAfterViewInit(): void {
-
   }
 
   ngOnInit(): void {
@@ -58,6 +59,13 @@ export class CharacterEditComponent implements AfterViewInit, OnInit, OnDestroy 
         this.characterId = +params.id;
       }
       this.loadCharacter();
+    });
+
+    this.characterForm = new FormGroup({
+      name: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(100)
+        ])
     });
   }
 
