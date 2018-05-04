@@ -1,22 +1,33 @@
-<div class="characters" *ngIf="character != null">
-  <div class="main-section">
-    <div class="btn-group" role="group" aria-label="Basic example">
-      <a [routerLink]="['/characters/:id/sheet']"
-         routerLinkActive="active"
-         class="btn btn-secondary">
-        Character sheet
-      </a>
-      <a [routerLink]="['/characters/:id/inventory']"
-         routerLinkActive="active"
-         class="btn btn-secondary">
-        Inventory
-      </a>
-      <a [routerLink]="['/characters/:id/story']"
-         routerLinkActive="active"
-         class="btn btn-secondary">
-        Story
+<div class="character" *ngIf="character != null">
+  <div class="sub-navbar">
+    <div class="title">{{character.name}}</div>
+    <div class="actions">
+      <a [routerLink]="['/characters']"
+         class="activate-button">
+        <fa-icon [icon]="['fas', 'sign-out-alt']"></fa-icon>
       </a>
     </div>
-    <div class="title">{{character.name}}</div>
+  </div>
+
+  <div class="vertical-actions">
+    <a [routerLink]="['/characters', character.id ,'sheet']"
+       routerLinkActive="active"
+       class="activate-button">
+      <fa-icon [icon]="['fas', 'user-secret']"></fa-icon>
+    </a>
+    <a [routerLink]="['/characters', character.id ,'inventory']"
+       routerLinkActive="active"
+       class="activate-button">
+      <fa-icon [icon]="['fas', 'box-open']"></fa-icon>
+    </a>
+    <a [routerLink]="['/characters', character.id ,'story']"
+       routerLinkActive="active"
+       class="activate-button">
+      <fa-icon [icon]="['fas', 'book']"></fa-icon>
+    </a>
+  </div>
+
+  <div class="container-with-vertical-actions">
+    <router-outlet></router-outlet>
   </div>
 </div>

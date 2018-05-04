@@ -1,20 +1,45 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "variables";
+
+body, html {
+  height: 100%;
+  background: #FFFFFF;
+}
+
 .rpgi {
+
+  .main-container {
+    position: absolute;
+    top: $navbarHeight;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #FFFFFF;
+  }
 
   .rpgi-hidden {
     display: none;
   }
 
   .main-navbar {
-    background: $colorNavbarPrimary;
+    background: $colorMain1;
     color: $colorNavbarFont;
+    height: $navbarHeight;
+    a {
+      color: $colorNavbarFont;
+    }
   }
-  .main-section {
-    border-top: 1px solid #444444;
-    background: $colorNavbarSecondary;
+  .sub-navbar {
+    $topPadding: 9px;
+    border-top: 1px solid $colorSeparator;
+    background: $colorMain2;
     color: $colorNavbarFont;
-    padding: 6px 9px 6px 9px;
+    padding: 6px $topPadding 6px 9px;
+    height: $subNavbarHeight;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: $navbarHeight;
 
     .title {
       display: inline-block;
@@ -23,8 +48,10 @@
       width: 200px;
     }
 
-    .btn-group {
-      margin-right: 50px;
+    .actions {
+      display: inline-block;
+      float: right;
+      margin-top: -$topPadding;
     }
   }
 
@@ -37,7 +64,8 @@
     max-width: 800px;
     margin-top: 60px;
     padding: $padding;
-    box-shadow: 0 0 20px 0 #999999;
+    box-shadow: 0 0 20px 0 #777777;
+    background: white;
 
     .root-container-title {
       text-align: center;
@@ -62,5 +90,39 @@
         box-shadow: 0 0 0 0.2rem rgba(255, 100, 100, 0.5)
       }
     }
+  }
+
+  .vertical-actions {
+    width: $verticalActionsWidth;
+    background: $colorMain2;
+    border-top: 1px solid $colorSeparator;
+    border-right: 1px solid $colorSeparator;
+    position: fixed;
+    top: $navbarHeight + $subNavbarHeight;
+    left: 0;
+    bottom: 0;
+  }
+
+  .container-with-vertical-actions {
+    margin-top: $subNavbarHeight;
+    margin-left: $verticalActionsWidth;
+  }
+
+  .activate-button {
+    display: block;
+    width: $verticalActionsWidth;
+    height: $verticalActionsWidth;
+    text-align: center;
+    padding-top: 10px;
+    font-size: 20px;
+    color: white;
+
+    &:hover {
+      color: $colorActive;
+    }
+  }
+  .activate-button.active {
+    color: white;
+    background: $colorActive;
   }
 }

@@ -25,6 +25,7 @@ import {CharactersModule} from "./characters/characters.module";
     SecurityModule,
     RouterModule.forRoot([APP_ROUTE], {useHash: true})
   ],
+  exports: [],
   providers: [
   ],
   bootstrap: [AppComponent]

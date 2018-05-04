@@ -4,6 +4,7 @@ import {CharactersListComponent} from "./characters-list.component";
 import {CharacterComponent} from "./character.component";
 import {CharactersRootComponent} from "./characters-root.component";
 import {CharacterEditComponent} from "./character-edit.component";
+import {CharacterInventoryComponent} from "./inventory/character.inventory.component";
 
 export const CHARACTERS_ROUTE: Route = {
   path: 'characters',
@@ -20,7 +21,13 @@ export const CHARACTERS_ROUTE: Route = {
     },
     {
       path: ':id',
-      component: CharacterComponent
+      component: CharacterComponent,
+      children: [
+        {
+          path: 'inventory',
+          component: CharacterInventoryComponent
+        }
+      ]
     },
     {
       path: ':id/edit',
