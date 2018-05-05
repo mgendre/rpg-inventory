@@ -35,14 +35,15 @@ class RootCategoryDTO(
 )
 
 class CategoryDTO(
-  val name: String?,
+  val label: String?,
   val categories: List<CategoryDTO>?,
   val items: List<ItemDTO>?
 )
 
 class ItemDTO(
-  val name: String,
+  val label: String,
   val weight: Float?,
   val count: Int?,
-  val comments: String?
+  val comments: String?,
+  val reference: String?
 )

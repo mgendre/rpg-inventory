@@ -129,54 +129,6 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
     id: 'element-root',
     categories: [
       {
-        label: 'Character',
-        type: 'location',
-        id: 'location-1',
-        categories: [
-          {
-            label: 'Fusil de sniper',
-            type: 'category',
-            id: 'cat-1',
-            items: [
-              {
-                type: 'item',
-                id: 'item-1',
-                label: 'Fusil de sniper, qualité normale'
-              },
-              {
-                id: 'item-2',
-                type: 'item',
-                label: 'Munitions sniper'
-              }
-            ]
-          },
-          {
-            label: 'Fusil de combat',
-            type: 'category',
-            id: 'category-2',
-            items: [
-              {
-                type: 'item',
-                id: 'item-3',
-                label: 'Fusil de combat, qualité normale'
-              },
-              {
-                type: 'item',
-                id: 'item-4',
-                label: 'Munitions combat'
-              }
-            ]
-          }
-        ],
-        items: [
-          {
-            type: 'item',
-            id: 'item-5',
-            label: 'un item de fou'
-          }
-        ]
-      },
-      {
         label: 'Bag',
         type: 'location',
         id: 'location-2',
@@ -203,7 +155,11 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
           {
             type: 'item',
             id: 'item-8',
-            label: 'SUper item'
+            label: 'SUper item',
+            weight: 0.5,
+            reference: 'p123',
+            comments: 'pen 5, reliable',
+            count: 3
           }
         ]
       }
@@ -219,5 +175,8 @@ export class InventoryElement {
 }
 
 export class InventoryItem extends InventoryElement {
-
+  public weight: number;
+  public comments: string;
+  public reference: string;
+  public count: number;
 }

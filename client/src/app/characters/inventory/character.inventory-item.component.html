@@ -1,3 +1,24 @@
 <div class="inventory-item">
-  {{item.label}}
+  <span ngxDragHandle class="drag-handle">
+    <span class="icon"></span>
+  </span>
+  <span class="item-label">{{item.label}}</span>
+  <div class="details">
+    <div class="reference">
+      <fa-icon class="icon-legend" [icon]="['fas', 'bookmark']" *ngIf="item.reference"></fa-icon>
+      {{item.reference}}
+    </div>
+    <div class="count">
+      <fa-icon class="icon-legend" [icon]="['fas', 'hashtag']" *ngIf="item.count"></fa-icon>
+      {{item.count}}
+    </div>
+    <div class="weight">
+      <fa-icon class="icon-legend" [icon]="['fas', 'weight']" *ngIf="item.weight"></fa-icon>
+      {{item.weight}}<span *ngIf="item.count">/{{item.weight * item.count}}</span>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+  <div class="comments" *ngIf="item.comments">
+    {{item.comments}}
+  </div>
 </div>

@@ -9,11 +9,23 @@
     font-weight: bold;
     font-size: 20px;
     background: $colorMain2;
-    padding: 9px;
+    padding: 9px 9px 9px 30px;
   }
 
   .element-location-content {
     margin: 18px;
+  }
+
+  .drag-handle {
+    margin-left: -30px;
+    .icon {
+      border-left-color: white;
+      border-right-color: white;
+    }
+    &:hover .icon {
+      border-left-color: $colorActive;
+      border-right-color: $colorActive;
+    }
   }
 }
 
@@ -28,6 +40,7 @@
     padding-top: 9px;
     padding-bottom: 9px;
     padding-left: 9px;
+    margin-left: 20px;
   }
 }
 
@@ -38,3 +51,73 @@
 .element-items {
   padding-bottom: 30px;
 }
+
+.inventory-item {
+  background: white;
+  border: 1px solid black;
+  border-left-width: 5px;
+  margin-bottom: -1px;
+  padding: 9px;
+  color: black;
+
+
+  .item-label {
+    font-weight: bold;
+    display: inline-block;
+    margin-left: 20px;
+  }
+
+  .icon-legend {
+    display: inline-block;
+    margin-right: 3px;
+    font-size: 12px;
+  }
+
+  .details {
+    float: right;
+  }
+
+  .weight {
+    width: 110px;
+    display: inline-block;
+    font-size: 13px;
+  }
+  .count {
+    width: 110px;
+    display: inline-block;
+    font-size: 13px;
+  }
+  .reference {
+    width: 130px;
+    display: inline-block;
+    font-size: 13px;
+  }
+
+  .comments {
+    font-size: 13px;
+    margin-left: 20px;
+  }
+}
+
+.drag-handle {
+  display: block;
+  position: absolute;
+  cursor: pointer;
+  padding: 9px;
+  margin-top: -9px;
+  margin-left: -9px;
+
+  .icon {
+    height: 24px;
+    border-left: 2px dashed black;
+    border-right: 2px dashed black;
+    padding-left: 2px;
+    width: 6px;
+  }
+
+  &:hover .icon {
+    border-left-color: $colorActive;
+    border-right-color: $colorActive;
+  }
+}
+

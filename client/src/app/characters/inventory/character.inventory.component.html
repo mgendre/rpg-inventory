@@ -5,7 +5,12 @@
          [id]="location.id"
          *ngFor="let location of inventoryUiData.categories">
 
-      <div class="element-location-title">{{location.label}}</div>
+      <div class="element-location-title">
+        <span ngxDragHandle class="drag-handle">
+          <span class="icon"></span>
+        </span>
+        {{location.label}}
+      </div>
       <div class="element-location-content">
         <div class="element-categories"
              ngxDroppable="categories"
@@ -14,7 +19,12 @@
                ngxDraggable="categories"
                [id]="category.id"
                *ngFor="let category of location.categories">
-            <div class="element-category-title">{{category.label}}</div>
+            <div class="element-category-title">
+              <span ngxDragHandle class="drag-handle">
+                <span class="icon"></span>
+              </span>
+              {{category.label}}
+            </div>
             <div class="element-items"
                  ngxDroppable="items"
                  (drop)="dragEnd()">
