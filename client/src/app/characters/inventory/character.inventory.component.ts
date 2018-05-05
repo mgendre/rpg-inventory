@@ -5,7 +5,7 @@ import {CharacterDataStoreService} from "../character-datastore";
 import * as _ from "lodash";
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {CharacterInventoryItemEditComponent} from "./character.inventory-item-edit.component";
-import {InventoryElement, InventoryItem} from "./inventory-data";
+import {InventoryItem} from "./inventory-data";
 
 @Component({
   selector: 'rpgi-character-inventory',
@@ -20,11 +20,74 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
 
   private idCounter = 1000;
 
+  private originalInventory = null;
+
   constructor(
     private characterDataStore: CharacterDataStoreService,
     private elementRef: ElementRef,
     private modalService: NgbModal
   ) {
+  }
+
+
+  // -------------------------------------------------------------------------------------------------------------------
+  // SAVE AND GET
+  // -------------------------------------------------------------------------------------------------------------------
+
+  private toServerItem(item) {
+    return {
+      label: item.label,
+      reference: item.reference,
+      comments: item.command,
+      weight: item.weight,
+      count: item.count
+    };
+  }
+
+  private toServerRepresentation(inventory) {
+    /*
+    Server format is:
+    {
+      label: string
+      categories: []
+      items: []
+    }
+     */
+
+    const serverData = {
+      categories: []
+    };
+    inventory.categories.forEach((storage) => {
+      const serverStorage = {
+        items: [],
+        categories: [],
+        label: storage.label
+      };
+      serverData.categories.push(serverStorage);
+      storage.items.forEach((item) => {
+        serverStorage.items.push(this.toServerItem(item));
+      });
+      storage.categories.forEach((category) => {
+        const serverCategory = {
+          items: [],
+          label: category.label
+        };
+        serverStorage.categories.push(serverCategory);
+        category.items.forEach((item) => {
+          serverCategory.items.push(this.toServerItem(item));
+        });
+      });
+    });
+
+    return serverData;
+  }
+
+  save() {
+    const serverData = this.toServerRepresentation(this.inventoryUiData);
+    this.characterDataStore.saveInventory({
+      id: this.originalInventory.id,
+      inventory: serverData
+    });
   }
 
   // -------------------------------------------------------------------------------------------------------------------
@@ -214,6 +277,7 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
       this.character = null;
       if (chr) {
         this.character = chr.character;
+        this.originalInventory = {... chr.inventory};
       }
     });
   }

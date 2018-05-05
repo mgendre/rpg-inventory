@@ -6,7 +6,7 @@ import org.rpg.inventory.domain.data.InventoryEO
 
 class InventoryDTO(
   val id: Long?,
-  val inventory: RootCategoryDTO
+  val inventory: InventoryDataDTO
 ) {
   fun toEO(mapper: ObjectMapper, character: CharacterEO): InventoryEO {
     val data = mapper.writeValueAsString(inventory)
@@ -20,18 +20,17 @@ class InventoryDTO(
 
   companion object {
       fun from(eo: InventoryEO, mapper: ObjectMapper): InventoryDTO {
-        var cat = RootCategoryDTO(null, null)
+        var cat = InventoryDataDTO(null)
         if (eo.data != null) {
-          cat = mapper.readValue(eo.data, RootCategoryDTO::class.java)
+          cat = mapper.readValue(eo.data, InventoryDataDTO::class.java)
         }
         return InventoryDTO(inventory = cat, id = eo.id)
       }
   }
 }
 
-class RootCategoryDTO(
-  val categories: List<CategoryDTO>?,
-  val items: List<ItemDTO>?
+class InventoryDataDTO (
+  val categories: List<CategoryDTO>?
 )
 
 class CategoryDTO(

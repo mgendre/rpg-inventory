@@ -19,6 +19,14 @@ export class CharactersApiService {
   public save(character: Character): Promise<Character> {
     return this.http.post<Character>(`/api/v1/characters`, character).toPromise();
   }
+
+  public saveInventory(characterId: number, inventory: any): Promise<any> {
+    return this.http.post<any>(`/api/v1/characters/${characterId}/inventory`, inventory).toPromise();
+  }
+
+  public getInventory(characterId: number): Promise<any> {
+    return this.http.get<any>(`/api/v1/characters/${characterId}/inventory`).toPromise();
+  }
 }
 
 export class Character {

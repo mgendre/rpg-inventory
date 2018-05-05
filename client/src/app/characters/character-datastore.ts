@@ -6,16 +6,27 @@ import {Character, CharactersApiService} from "../api/characters-api.service";
 export class CharacterDataStoreService {
 
   private characterStore = new BehaviorSubject<FullCharacter>(null);
+  private characterId: number;
 
   constructor(private charactersApi: CharactersApiService) {
   }
 
   public loadCharacter(id) {
     const newChar = new FullCharacter();
+    this.characterId = id;
     this.characterStore.next(null);
     this.charactersApi.get(id).then((char) => {
-      newChar.character = char;
-      this.characterStore.next(newChar);
+      this.charactersApi.getInventory(id).then((inventory) => {
+        newChar.character = char;
+        newChar.inventory = inventory;
+        this.characterStore.next(newChar);
+      });
+    });
+  }
+
+  public saveInventory(inventory: any) {
+    this.charactersApi.saveInventory(this.characterId, inventory).then((inventory) => {
+      alert('inventory saved: ' + inventory);
     });
   }
 
@@ -26,4 +37,5 @@ export class CharacterDataStoreService {
 
 export class FullCharacter {
   public character: Character = null;
+  public inventory: any = null;
 }
