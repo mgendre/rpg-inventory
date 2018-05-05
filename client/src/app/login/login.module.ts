@@ -8,6 +8,7 @@ import {LOGIN_ROUTE} from "./login.route";
     RouterModule.forRoot([LOGIN_ROUTE], {useHash: true})
   ],
   exports: [
+    LoginComponent
   ],
   providers: [
   ],

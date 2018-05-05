@@ -9,6 +9,7 @@ import {APP_ROUTE} from "./app.route";
 import {LayoutModule} from "./layout/layout.module";
 import {SiteModule} from "./site/site.module";
 import {CharactersModule} from "./characters/characters.module";
+import {AppCommonModule} from "./app-common-module";
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import {CharactersModule} from "./characters/characters.module";
     LoginModule,
     CharactersModule,
     SecurityModule,
+    AppCommonModule,
     RouterModule.forRoot([APP_ROUTE], {useHash: true})
   ],
   exports: [],

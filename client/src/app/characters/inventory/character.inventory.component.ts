@@ -3,6 +3,7 @@ import {Subscription} from "rxjs/Subscription";
 import {Character} from "../../api/characters-api.service";
 import {CharacterDataStoreService} from "../character-datastore";
 import * as _ from "lodash";
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'rpgi-character-inventory',
@@ -15,19 +16,80 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
 
   private storeSubscription: Subscription = null;
 
-  structure = null;
+  private idCounter = 1000;
 
   constructor(
     private characterDataStore: CharacterDataStoreService,
-    private elementRef: ElementRef
+    private elementRef: ElementRef,
+    private modalService: NgbModal
   ) {
+  }
+
+  // -------------------------------------------------------------------------------------------------------------------
+  // ACTIONS
+  // -------------------------------------------------------------------------------------------------------------------
+
+  // STORAGE MANAGEMENT
+
+  storageName: string;
+  addStorage(modal) {
+    this.storageName = null;
+    this.modalService.open(modal).result.then(() => {
+      this.inventoryUiData.categories.push({
+        id: 'location-' + (++this.idCounter),
+        type: 'location',
+        label: this.storageName,
+        categories: [],
+        items: []
+      });
+    });
+  }
+  editStorage(modal, item) {
+    this.storageName = item.label;
+    this.modalService.open(modal).result.then(() => {
+      item.label = this.storageName;
+    });
+  }
+  deleteStorage(item) {
+    const idx = _.findIndex(this.inventoryUiData.categories, {id: item.id});
+    if (idx >= 0) {
+      this.inventoryUiData.categories.splice(idx, 1);
+    }
+  }
+
+  // CATEGORY MANAGEMENT
+
+  categoryName: string;
+  addCategory(modal, storage) {
+    this.categoryName = null;
+    this.modalService.open(modal).result.then(() => {
+      storage.categories.push({
+        id: 'category-' + (++this.idCounter),
+        type: 'category',
+        label: this.categoryName,
+        categories: [],
+        items: []
+      });
+    });
+  }
+  editCategory(modal, storage, item) {
+    this.categoryName = item.label;
+    this.modalService.open(modal).result.then(() => {
+      item.label = this.categoryName;
+    });
+  }
+  deleteCategory(storage, item) {
+    const idx = _.findIndex(storage.categories, {id: item.id});
+    if (idx >= 0) {
+      storage.categories.splice(idx, 1);
+    }
   }
 
   // -------------------------------------------------------------------------------------------------------------------
   // DRAG AND DROP SUPPORT
   // -------------------------------------------------------------------------------------------------------------------
 
-  rebuildHierarchy() {
+  private rebuildHierarchy() {
     const inventoryCopy = {... this.inventoryUiData};
     const elementByIds = {};
     const hierarchy = this.getInventoryIdsHierarchy(this.elementRef.nativeElement.querySelector('.element-root'));
@@ -44,7 +106,7 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
     this.inventoryUiData = inventoryCopy;
   }
 
-  rebuildInventoryHierarchy(elementByIds, idsHierarchy, parentElement)  {
+  private rebuildInventoryHierarchy(elementByIds, idsHierarchy, parentElement)  {
     if (idsHierarchy) {
       let currentElement = parentElement;
       if (idsHierarchy.id) {
@@ -68,7 +130,7 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
     }
   }
 
-  inventoryElementToMap(inventoryElement, map) {
+  private inventoryElementToMap(inventoryElement, map) {
     if (inventoryElement) {
       map[inventoryElement.id] = inventoryElement;
       if (inventoryElement.categories) {
@@ -84,7 +146,7 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
     }
   }
 
-  getInventoryIdsHierarchy(element: any) {
+  private getInventoryIdsHierarchy(element: any) {
     let id = null;
     let children = [];
     if (element.classList.contains('inventory-element')) {

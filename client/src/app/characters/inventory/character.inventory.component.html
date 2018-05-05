@@ -10,6 +10,20 @@
           <span class="icon"></span>
         </span>
         {{location.label}}
+        <div class="contextual-controls">
+          <fa-icon class="icon-control"
+                   [icon]="['fas', 'edit']"
+                   (click)="editStorage(storageModal, location)">
+          </fa-icon>
+          <fa-icon class="icon-control"
+                   [icon]="['fas', 'trash']"
+                   mwlConfirmationPopover
+                   [popoverTitle]="'Delete this storage ?'"
+                   [popoverMessage]="'All items will be deleted'"
+                   placement="left"
+                   (confirm)="deleteStorage(location)">
+          </fa-icon>
+        </div>
       </div>
       <div class="element-location-content">
         <div class="element-categories"
@@ -24,6 +38,20 @@
                 <span class="icon"></span>
               </span>
               {{category.label}}
+              <div class="contextual-controls">
+                <fa-icon class="icon-control"
+                         [icon]="['fas', 'edit']"
+                         (click)="editCategory(categoryModal, location, category)">
+                </fa-icon>
+                <fa-icon class="icon-control"
+                         [icon]="['fas', 'trash']"
+                         mwlConfirmationPopover
+                         [popoverTitle]="'Delete this storage ?'"
+                         [popoverMessage]="'All items will be deleted'"
+                         placement="left"
+                         (confirm)="deleteCategory(location, category)">
+                </fa-icon>
+              </div>
             </div>
             <div class="element-items"
                  ngxDroppable="items"
@@ -37,6 +65,7 @@
             </div>
           </div>
         </div>
+        <div class="clearfix"></div>
         <div class="element-items"
              ngxDroppable="items"
              (drop)="dragEnd()">
@@ -48,11 +77,72 @@
             <rpgi-inventory-item [item]="item"></rpgi-inventory-item>
           </div>
         </div>
+        <div class="actions pull-right">
+          <button class="btn btn-primary pull-right"
+                  (click)="addCategory(categoryModal, location)">
+            Add category
+          </button>
+        </div>
+        <div class="clearfix"></div>
       </div>
     </div>
   </div>
 
-  <!--rpgi-inventory-element [element-data]="inventoryUiData"></rpgi-inventory-element-->
 
+  <!-- Add location component -->
+  <button class="btn btn-primary" (click)="addStorage(storageModal)">
+    Add a new storage
+  </button>
 
+  <!-- edit storage modal -->
+  <ng-template #storageModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Name your storage</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="storage.name">Storage name</label>
+        <input type="text"
+               id="storage.name"
+               maxlength="100"
+               class="form-control"
+               [(ngModel)]="storageName"
+               required>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="d()">Cancel</button>
+      <button type="button" class="btn btn-outline-dark" (click)="c()" [disabled]="!storageName">OK
+      </button>
+    </div>
+  </ng-template>
+
+  <!-- edit category modal -->
+  <ng-template #categoryModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Name your category</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="storage.name">Category name</label>
+        <input type="text"
+               id="category.name"
+               maxlength="100"
+               class="form-control"
+               [(ngModel)]="categoryName"
+               required>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="d()">Cancel</button>
+      <button type="button" class="btn btn-outline-dark" (click)="c()" [disabled]="!categoryName">OK
+      </button>
+    </div>
+  </ng-template>
 </div>

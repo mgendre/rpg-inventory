@@ -130,4 +130,23 @@ body, html {
     color: white;
     background: $colorActive;
   }
+
+  .contextual-controls {
+    float: right;
+
+    .icon-control {
+      display: inline-block;
+      padding-left: 3px;
+      padding-right: 3px;
+      cursor: pointer;
+      &:hover {
+        color: $colorActive;
+      }
+    }
+  }
+
+  /* Component override */
+  .popover-title {
+    color: black;
+  }
 }
