@@ -21,6 +21,7 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
   private idCounter = 1000;
 
   private originalInventory = null;
+  private inventoryUiData = null;
 
   constructor(
     private characterDataStore: CharacterDataStoreService,
@@ -45,15 +46,6 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
   }
 
   private toServerRepresentation(inventory) {
-    /*
-    Server format is:
-    {
-      label: string
-      categories: []
-      items: []
-    }
-     */
-
     const serverData = {
       categories: []
     };
@@ -78,14 +70,59 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
         });
       });
     });
-
     return serverData;
+  }
+
+  private fromServerRepresentation(serverInventory) {
+    const inventory = {
+      type: 'root',
+      id: 'element-root',
+      categories: []
+    };
+
+    if(serverInventory.inventory && serverInventory.inventory.categories) {
+      serverInventory.inventory.categories.forEach((serverStorage) => {
+        const storage = {
+          label: serverStorage.label,
+          items: [],
+          categories: [],
+          id: 'location-' + (++this.idCounter)
+        };
+        inventory.categories.push(storage);
+
+        if(serverStorage.items) {
+          serverStorage.items.forEach((serverItem) => {
+            serverItem.id = 'item-' + (++this.idCounter);
+            storage.items.push(serverItem);
+          });
+        }
+        if (serverStorage.categories) {
+          serverStorage.categories.forEach((serverCategory) => {
+            const category = {
+              label: serverCategory.label,
+              items: [],
+              categories: [],
+              id: 'category-' + (++this.idCounter)
+            };
+            storage.categories.push(category);
+
+            if(serverCategory.items) {
+              serverCategory.items.forEach((serverItem) => {
+                serverItem.id = 'item-' + (++this.idCounter);
+                category.items.push(serverItem);
+              });
+            }
+          });
+        }
+      })
+    }
+    return inventory;
   }
 
   save() {
     const serverData = this.toServerRepresentation(this.inventoryUiData);
     this.characterDataStore.saveInventory({
-      id: this.originalInventory.id,
+      id: this.originalInventory ? this.originalInventory.id : null,
       inventory: serverData
     });
   }
@@ -277,7 +314,8 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
       this.character = null;
       if (chr) {
         this.character = chr.character;
-        this.originalInventory = {... chr.inventory};
+
+        this.inventoryUiData = this.fromServerRepresentation({... chr.inventory})
       }
     });
   }
@@ -286,49 +324,5 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
     this.storeSubscription.unsubscribe();
   }
 
-
-
-
-  inventoryUiData = {
-    type: 'root',
-    id: 'element-root',
-    categories: [
-      {
-        label: 'Bag',
-        type: 'location',
-        id: 'location-2',
-        categories: [
-          {
-            label: 'Bolt',
-            type: 'category',
-            id: 'category-3',
-            items: [
-              {
-                type: 'item',
-                id: 'item-6',
-                label: 'Pistolet Bolter'
-              },
-              {
-                type: 'item',
-                id: 'item-7',
-                label: 'Munitions bolt'
-              }
-            ]
-          }
-        ],
-        items: [
-          {
-            type: 'item',
-            id: 'item-8',
-            label: 'SUper item',
-            weight: 0.5,
-            reference: 'p123',
-            comments: 'pen 5, reliable',
-            count: 3
-          }
-        ]
-      }
-    ]
-  };
 }
 
