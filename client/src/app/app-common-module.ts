@@ -4,6 +4,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {APIModule} from "./api/api.module";
 import {HttpClientModule} from "@angular/common/http";
+import {NgxDnDModule} from "@swimlane/ngx-dnd";
 
 @NgModule({
   imports: [
@@ -11,14 +12,16 @@ import {HttpClientModule} from "@angular/common/http";
     CommonModule,
     FontAwesomeModule,
     APIModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxDnDModule
   ],
   exports: [
     ReactiveFormsModule,
     CommonModule,
     FontAwesomeModule,
     APIModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxDnDModule
   ],
   providers: [
   ],
