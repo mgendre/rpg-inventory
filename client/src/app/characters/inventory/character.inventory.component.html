@@ -60,7 +60,10 @@
                    ngxDraggable="items"
                    [id]="item.id"
                    *ngFor="let item of category.items">
-                <rpgi-inventory-item [item]="item"></rpgi-inventory-item>
+                <rpgi-inventory-item [item]="item"
+                                     (edit)="editItem(item)"
+                                     (delete)="deleteItem(category, item)">
+                </rpgi-inventory-item>
               </div>
             </div>
           </div>
@@ -74,7 +77,10 @@
                ngxDraggable="items"
                [id]="item.id"
                *ngFor="let item of location.items">
-            <rpgi-inventory-item [item]="item"></rpgi-inventory-item>
+            <rpgi-inventory-item [item]="item"
+                                 (edit)="editItem(item)"
+                                 (delete)="deleteItem(location, item)">
+            </rpgi-inventory-item>
           </div>
         </div>
         <div class="actions pull-right">

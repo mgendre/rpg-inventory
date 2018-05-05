@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {InventoryItem} from "./inventory-data";
 
 @Component({
@@ -9,4 +9,7 @@ import {InventoryItem} from "./inventory-data";
 export class CharacterInventoryItemComponent {
   @Input()
   item: InventoryItem;
+
+  @Output() edit: EventEmitter<null> = new EventEmitter();
+  @Output() delete: EventEmitter<null> = new EventEmitter();
 }

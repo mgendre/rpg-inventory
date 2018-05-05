@@ -104,6 +104,26 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
     });
   }
 
+  editItem(item) {
+    const modalRef = this.modalService.open(CharacterInventoryItemEditComponent);
+    modalRef.componentInstance.item = item;
+    modalRef.result.then((edited: InventoryItem) => {
+      // Merge...
+      item.label = edited.label;
+      item.comments = edited.comments;
+      item.weight = edited.weight;
+      item.count = edited.count;
+      item.reference = edited.reference;
+    });
+  }
+
+  deleteItem(parent, item) {
+    const idx = _.findIndex(parent.items, {id: item.id});
+    if (idx >= 0) {
+      parent.items.splice(idx, 1);
+    }
+  }
+
   // -------------------------------------------------------------------------------------------------------------------
   // DRAG AND DROP SUPPORT
   // -------------------------------------------------------------------------------------------------------------------
@@ -185,7 +205,7 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
   dragEnd() {
     setTimeout(() => {
       this.rebuildHierarchy();
-    }, 10)
+    }, 50)
   }
 
 
