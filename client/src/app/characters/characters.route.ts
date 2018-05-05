@@ -5,6 +5,9 @@ import {CharacterComponent} from "./character.component";
 import {CharactersRootComponent} from "./characters-root.component";
 import {CharacterEditComponent} from "./character-edit.component";
 import {CharacterInventoryComponent} from "./inventory/character.inventory.component";
+import {CharacterBiographyComponent} from "./biography/character.biography.component";
+import {CharacterSheetComponent} from "./sheet/character.sheet.component";
+import {CharacterStoryComponent} from "./story/character.story.component";
 
 export const CHARACTERS_ROUTE: Route = {
   path: 'characters',
@@ -24,8 +27,20 @@ export const CHARACTERS_ROUTE: Route = {
       component: CharacterComponent,
       children: [
         {
+          path: 'biography',
+          component: CharacterBiographyComponent
+        },
+        {
           path: 'inventory',
           component: CharacterInventoryComponent
+        },
+        {
+          path: 'sheet',
+          component: CharacterSheetComponent
+        },
+        {
+          path: 'story',
+          component: CharacterStoryComponent
         }
       ]
     },

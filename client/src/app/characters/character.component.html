@@ -10,6 +10,11 @@
   </div>
 
   <div class="vertical-actions">
+    <a [routerLink]="['/characters', character.id, 'biography']"
+       routerLinkActive="active"
+       class="activate-button">
+      <fa-icon [icon]="['fas', 'user-circle']"></fa-icon>
+    </a>
     <a [routerLink]="['/characters', character.id ,'sheet']"
        routerLinkActive="active"
        class="activate-button">

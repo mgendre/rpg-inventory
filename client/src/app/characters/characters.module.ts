@@ -8,6 +8,9 @@ import {CharacterEditComponent} from "./character-edit.component";
 import {CharacterDataStoreService} from "./character-datastore";
 import {AppCommonModule} from "../app-common-module";
 import {CharacterInventoryComponent} from "./inventory/character.inventory.component";
+import {CharacterBiographyComponent} from "./biography/character.biography.component";
+import {CharacterStoryComponent} from "./story/character.story.component";
+import {CharacterSheetComponent} from "./sheet/character.sheet.component";
 
 @NgModule({
   imports: [
@@ -24,7 +27,10 @@ import {CharacterInventoryComponent} from "./inventory/character.inventory.compo
     CharacterComponent,
     CharactersListComponent,
     CharacterEditComponent,
-    CharacterInventoryComponent
+    CharacterInventoryComponent,
+    CharacterBiographyComponent,
+    CharacterStoryComponent,
+    CharacterSheetComponent
   ]
 })
 export class CharactersModule {

@@ -116,6 +116,9 @@ body, html {
     padding-top: 10px;
     font-size: 20px;
     color: white;
+    border-top: 1px solid $colorSeparator;
+    border-bottom: 1px solid $colorSeparator;
+    margin-top: -1px;
 
     &:hover {
       color: $colorActive;
