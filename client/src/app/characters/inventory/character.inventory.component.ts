@@ -15,13 +15,12 @@ import {InventoryItem} from "./inventory-data";
 export class CharacterInventoryComponent implements OnInit, OnDestroy {
 
   character: Character = null;
+  inventoryUiData = null;
+  editMode = false;
 
   private storeSubscription: Subscription = null;
-
   private idCounter = 1000;
-
   private originalInventory = null;
-  private inventoryUiData = null;
 
   constructor(
     private characterDataStore: CharacterDataStoreService,
@@ -128,7 +127,18 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
     this.characterDataStore.saveInventory({
       id: this.originalInventory ? this.originalInventory.id : null,
       inventory: serverData
+    }).then(() => {
+      this.editMode = false;
     });
+  }
+
+  cancel() {
+    this.inventoryUiData = this.fromServerRepresentation({... this.originalInventory});
+    this.editMode = false;
+  }
+
+  edit() {
+    this.editMode = true;
   }
 
   // -------------------------------------------------------------------------------------------------------------------
@@ -318,8 +328,9 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
       this.character = null;
       if (chr) {
         this.character = chr.character;
+        this.originalInventory = {... chr.inventory};
 
-        this.inventoryUiData = this.fromServerRepresentation({... chr.inventory})
+        this.inventoryUiData = this.fromServerRepresentation({... chr.inventory});
       }
     });
   }

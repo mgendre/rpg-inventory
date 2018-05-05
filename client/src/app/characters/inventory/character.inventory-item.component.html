@@ -1,5 +1,5 @@
 <div class="inventory-item">
-  <span ngxDragHandle class="drag-handle">
+  <span ngxDragHandle class="drag-handle" *ngIf="editMode">
     <span class="icon"></span>
   </span>
   <span class="item-label">{{item.label}}</span>
@@ -16,7 +16,7 @@
       <fa-icon class="icon-legend" [icon]="['fas', 'weight']" *ngIf="item.weight"></fa-icon>
       {{item.weight}}<span *ngIf="item.count">/{{item.weight * item.count}}</span>
     </div>
-      <div class="contextual-controls">
+      <div class="contextual-controls" *ngIf="editMode">
         <fa-icon class="icon-control"
                  [icon]="['fas', 'edit']"
                  (click)="edit.emit()">

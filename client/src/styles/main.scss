@@ -107,7 +107,7 @@ body, html {
   .container-with-vertical-actions {
     margin-top: $subNavbarHeight;
     margin-left: $verticalActionsWidth;
-    padding: 50px;
+    padding: 50px 50px 100px;
   }
 
   .activate-button {
@@ -143,6 +143,18 @@ body, html {
         color: $colorActive;
       }
     }
+  }
+
+  .page-controls {
+    height: 50px;
+    background: $colorMain3;
+    position: fixed;
+    bottom: 0;
+    left: $verticalActionsWidth;
+    right: 0;
+    padding-top: 6px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   /* Component override */

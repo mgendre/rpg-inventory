@@ -1,16 +1,17 @@
 <div class="inventory">
-  <div class="element-root" ngxDroppable="locations" (drop)="dragEnd()">
+  <div class="element-root" [ngClass]="{'read-only': !editMode}" ngxDroppable="locations" (drop)="dragEnd()">
     <div class="element-location inventory-element"
          ngxDraggable="locations"
+         [moves]="editMode"
          [id]="location.id"
          *ngFor="let location of inventoryUiData.categories">
 
       <div class="element-location-title">
-        <span ngxDragHandle class="drag-handle">
+        <span ngxDragHandle class="drag-handle" *ngIf="editMode">
           <span class="icon"></span>
         </span>
         {{location.label}}
-        <div class="contextual-controls">
+        <div class="contextual-controls" *ngIf="editMode">
           <fa-icon class="icon-control"
                    [icon]="['fas', 'edit']"
                    (click)="editStorage(storageModal, location)">
@@ -31,14 +32,15 @@
              (drop)="dragEnd()">
           <div class="element-category inventory-element"
                ngxDraggable="categories"
+               [moves]="editMode"
                [id]="category.id"
                *ngFor="let category of location.categories">
             <div class="element-category-title">
-              <span ngxDragHandle class="drag-handle">
+              <span ngxDragHandle class="drag-handle" *ngIf="editMode">
                 <span class="icon"></span>
               </span>
               {{category.label}}
-              <div class="contextual-controls">
+              <div class="contextual-controls" *ngIf="editMode">
                 <fa-icon class="icon-control"
                          [icon]="['fas', 'edit']"
                          (click)="editCategory(categoryModal, location, category)">
@@ -58,9 +60,11 @@
                  (drop)="dragEnd()">
               <div class="element-item inventory-element"
                    ngxDraggable="items"
+                   [moves]="editMode"
                    [id]="item.id"
                    *ngFor="let item of category.items">
                 <rpgi-inventory-item [item]="item"
+                                     [editMode]="editMode"
                                      (edit)="editItem(item)"
                                      (delete)="deleteItem(category, item)">
                 </rpgi-inventory-item>
@@ -75,15 +79,17 @@
 
           <div class="element-item inventory-element"
                ngxDraggable="items"
+               [moves]="editMode"
                [id]="item.id"
                *ngFor="let item of location.items">
             <rpgi-inventory-item [item]="item"
+                                 [editMode]="editMode"
                                  (edit)="editItem(item)"
                                  (delete)="deleteItem(location, item)">
             </rpgi-inventory-item>
           </div>
         </div>
-        <div class="actions pull-right">
+        <div class="actions pull-right" *ngIf="editMode">
           <button class="btn btn-primary"
                   (click)="addItem(location)">
             Add item
@@ -98,19 +104,34 @@
     </div>
   </div>
 
+  <!-- Add location component -->
+  <button class="btn btn-primary pull-right"
+          *ngIf="editMode"
+          (click)="addStorage(storageModal)">
+    Add a new storage
+  </button>
+  <div class="clearfix"></div>
+
   <div class="page-controls">
     <button type="button"
-            class="btn btn-primary"
+            *ngIf="editMode"
+            class="btn btn-default"
+            (click)="cancel()">
+      Cancel
+    </button>
+    <button type="button"
+            *ngIf="editMode"
+            class="btn btn-primary pull-right"
             (click)="save()">
       Save
     </button>
+    <button type="button"
+            *ngIf="!editMode"
+            class="btn btn-primary pull-right"
+            (click)="edit()">
+      Modify
+    </button>
   </div>
-
-
-  <!-- Add location component -->
-  <button class="btn btn-primary" (click)="addStorage(storageModal)">
-    Add a new storage
-  </button>
 
   <!-- edit storage modal -->
   <ng-template #storageModal let-c="close" let-d="dismiss">

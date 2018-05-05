@@ -25,7 +25,7 @@ export class CharacterDataStoreService {
   }
 
   public saveInventory(inventory: any) {
-    this.charactersApi.saveInventory(this.characterId, inventory).then((inventory) => {
+    return this.charactersApi.saveInventory(this.characterId, inventory).then((inventory) => {
       const chr = this.characterStore.getValue();
       chr.inventory = inventory;
       this.characterStore.next(chr);
