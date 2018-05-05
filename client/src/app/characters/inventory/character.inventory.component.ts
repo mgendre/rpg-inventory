@@ -104,7 +104,7 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
   dragEnd() {
     setTimeout(() => {
       this.rebuildHierarchy();
-    }, 100)
+    }, 10)
   }
 
 
