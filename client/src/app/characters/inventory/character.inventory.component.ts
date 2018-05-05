@@ -86,6 +86,7 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
           label: serverStorage.label,
           items: [],
           categories: [],
+          type: 'location',
           id: 'location-' + (++this.idCounter)
         };
         inventory.categories.push(storage);
@@ -93,6 +94,7 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
         if(serverStorage.items) {
           serverStorage.items.forEach((serverItem) => {
             serverItem.id = 'item-' + (++this.idCounter);
+            serverItem.type = 'item';
             storage.items.push(serverItem);
           });
         }
@@ -102,6 +104,7 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
               label: serverCategory.label,
               items: [],
               categories: [],
+              type: 'category',
               id: 'category-' + (++this.idCounter)
             };
             storage.categories.push(category);
@@ -109,6 +112,7 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
             if(serverCategory.items) {
               serverCategory.items.forEach((serverItem) => {
                 serverItem.id = 'item-' + (++this.idCounter);
+                serverItem.type = 'item';
                 category.items.push(serverItem);
               });
             }
