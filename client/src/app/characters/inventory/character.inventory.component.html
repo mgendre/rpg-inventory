@@ -46,7 +46,7 @@
                 <fa-icon class="icon-control"
                          [icon]="['fas', 'trash']"
                          mwlConfirmationPopover
-                         [popoverTitle]="'Delete this storage ?'"
+                         [popoverTitle]="'Delete this category ?'"
                          [popoverMessage]="'All items will be deleted'"
                          placement="left"
                          (confirm)="deleteCategory(location, category)">
@@ -78,7 +78,11 @@
           </div>
         </div>
         <div class="actions pull-right">
-          <button class="btn btn-primary pull-right"
+          <button class="btn btn-primary"
+                  (click)="addItem(location)">
+            Add item
+          </button>
+          <button class="btn btn-primary"
                   (click)="addCategory(categoryModal, location)">
             Add category
           </button>

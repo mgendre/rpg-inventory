@@ -4,6 +4,8 @@ import {Character} from "../../api/characters-api.service";
 import {CharacterDataStoreService} from "../character-datastore";
 import * as _ from "lodash";
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {CharacterInventoryItemEditComponent} from "./character.inventory-item-edit.component";
+import {InventoryElement, InventoryItem} from "./inventory-data";
 
 @Component({
   selector: 'rpgi-character-inventory',
@@ -83,6 +85,23 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
     if (idx >= 0) {
       storage.categories.splice(idx, 1);
     }
+  }
+
+  // ITEM MANAGEMENT
+
+  addItem(storage) {
+    const modalRef = this.modalService.open(CharacterInventoryItemEditComponent);
+    modalRef.componentInstance.item = {
+      id: 'item-' + (++this.idCounter),
+      label: null,
+      weight: 0,
+      count: 1,
+      comments: null,
+      type: 'item'
+    };
+    modalRef.result.then((item: InventoryItem) => {
+      storage.items.push(item);
+    });
   }
 
   // -------------------------------------------------------------------------------------------------------------------
@@ -229,16 +248,3 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
   };
 }
 
-export class InventoryElement {
-  public id: number;
-  public label: string;
-  public categories: InventoryElement[];
-  public items: InventoryItem[];
-}
-
-export class InventoryItem extends InventoryElement {
-  public weight: number;
-  public comments: string;
-  public reference: string;
-  public count: number;
-}

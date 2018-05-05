@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {InventoryItem} from "./character.inventory.component";
+import {InventoryItem} from "./inventory-data";
 
 @Component({
   selector: 'rpgi-inventory-item',

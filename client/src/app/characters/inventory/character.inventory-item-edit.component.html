@@ -1,0 +1,79 @@
+<div class="modal-header">
+  <h4 class="modal-title">Midify your item</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form novalidate [formGroup]="itemForm">
+    <div class="form-group">
+      <label for="item.label">Name</label>
+      <input type="text"
+             id="item.label"
+             maxlength="100"
+             class="form-control"
+             formControlName="label"
+             [(ngModel)]="editedItem.label"
+             required>
+    </div>
+    <div class="row">
+      <div class="col-sm">
+        <div class="form-group">
+          <label for="item.count">Number</label>
+          <input type="number"
+                 id="item.count"
+                 min="0"
+                 step="1"
+                 class="form-control"
+                 formControlName="count"
+                 [(ngModel)]="editedItem.count"
+                 required>
+        </div>
+      </div>
+      <div class="col-sm">
+        <div class="form-group">
+          <label for="item.weight">Weight</label>
+          <input type="number"
+                 id="item.weight"
+                 min="0"
+                 step="0.05"
+                 class="form-control"
+                 formControlName="weight"
+                 [(ngModel)]="editedItem.weight"
+                 required>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="item.reference">Book reference</label>
+      <input type="text"
+             id="item.reference"
+             maxlength="100"
+             class="form-control"
+             formControlName="reference"
+             [(ngModel)]="editedItem.reference">
+    </div>
+    <div class="form-group">
+      <label for="item.comments">Comments</label>
+      <textarea
+             id="item.comments"
+             class="form-control"
+             formControlName="comments"
+             [(ngModel)]="editedItem.comments">
+      </textarea>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button"
+          class="btn btn-outline-dark"
+          (click)="activeModal.dismiss('Cross click')">
+    Cancel
+  </button>
+  <button type="button"
+          class="btn btn-outline-dark"
+          (click)="activeModal.close(editedItem)"
+          [disabled]="!itemForm.valid">
+    OK
+  </button>
+</div>
