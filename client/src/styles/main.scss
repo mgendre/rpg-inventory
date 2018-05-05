@@ -65,7 +65,7 @@ body, html {
     max-width: 800px;
     margin-top: 60px;
     padding: $padding;
-    box-shadow: 0 0 20px 0 #777777;
+    box-shadow: $defaultBoxShadow;
     background: white;
 
     .root-container-title {
@@ -107,6 +107,7 @@ body, html {
   .container-with-vertical-actions {
     margin-top: $subNavbarHeight;
     margin-left: $verticalActionsWidth;
+    padding: 50px;
   }
 
   .activate-button {

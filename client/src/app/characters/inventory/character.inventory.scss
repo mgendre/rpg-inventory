@@ -1,24 +1,36 @@
-.root-categories {
-  padding: 9px;
-}
-.root-category {
-  padding: 9px;
-  margin-bottom: 20px;
-  background: #FFFF66;
-}
-.categories {
-  padding: 9px;
-}
-.category {
-  background: #FF66FF;
-  margin: 9px;
-  padding: 9px;
-}
-.items {
-  padding: 9px;
-}
-.item {
+@import "../../../styles/variables";
+.element-location {
+  box-shadow: $defaultBoxShadow;
   background: white;
-  padding: 9px;
-  margin: 9px;
+  color: white;
+  margin-bottom: 50px;
+
+  .element-location-title {
+    font-weight: bold;
+    font-size: 20px;
+    background: $colorMain2;
+    padding: 9px;
+  }
+
+  .element-location-content {
+    margin: 18px;
+  }
+}
+
+.element-category {
+  border-left: 5px solid black;
+  margin-bottom: 9px;
+  background: $colorMain2;
+  padding-right: 9px;
+
+  .element-category-title {
+    font-weight: bold;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    padding-left: 9px;
+  }
+}
+
+.element-items {
+  padding-bottom: 30px;
 }

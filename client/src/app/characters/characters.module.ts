@@ -11,7 +11,7 @@ import {CharacterInventoryComponent} from "./inventory/character.inventory.compo
 import {CharacterBiographyComponent} from "./biography/character.biography.component";
 import {CharacterStoryComponent} from "./story/character.story.component";
 import {CharacterSheetComponent} from "./sheet/character.sheet.component";
-import {CharacterInventoryElementComponent} from "./inventory/character.inventory-element.component";
+import {CharacterInventoryItemComponent} from "./inventory/character.inventory-item.component";
 
 @NgModule({
   imports: [
@@ -29,12 +29,11 @@ import {CharacterInventoryElementComponent} from "./inventory/character.inventor
     CharactersListComponent,
     CharacterEditComponent,
     CharacterInventoryComponent,
-    CharacterInventoryElementComponent,
+    CharacterInventoryItemComponent,
     CharacterBiographyComponent,
     CharacterStoryComponent,
     CharacterSheetComponent
   ]
 })
 export class CharactersModule {
-
 }
