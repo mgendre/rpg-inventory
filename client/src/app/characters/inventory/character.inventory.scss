@@ -1,16 +1,17 @@
 @import "../../../styles/variables";
+
 .element-location {
   box-shadow: $defaultBoxShadow;
   background: white;
   color: white;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   padding-bottom: 4px;
 
   .element-location-title {
     font-weight: bold;
     font-size: 20px;
     background: $colorMain3;
-    padding: 9px 9px 9px 30px;
+    padding: 3px 9px 3px 30px;
   }
 
   .element-location-content {
@@ -133,3 +134,15 @@
   }
 }
 
+.location-misc {
+  float: right;
+  .contextual-controls {
+    margin-left: 18px;
+  }
+}
+
+.total-weight {
+  font-size: 14px;
+  display: inline-block;
+  margin-right: 9px;
+}

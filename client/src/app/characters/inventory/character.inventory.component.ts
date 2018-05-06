@@ -135,6 +135,7 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
   cancel() {
     this.inventoryUiData = this.fromServerRepresentation({... this.originalInventory});
     this.editMode = false;
+    this.updateInventoryInternalData();
   }
 
   edit() {
@@ -186,18 +187,21 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
         categories: [],
         items: []
       });
+      this.updateInventoryInternalData();
     });
   }
   editCategory(modal, storage, item) {
     this.categoryName = item.label;
     this.modalService.open(modal).result.then(() => {
       item.label = this.categoryName;
+      this.updateInventoryInternalData();
     });
   }
   deleteCategory(storage, item) {
     const idx = _.findIndex(storage.categories, {id: item.id});
     if (idx >= 0) {
       storage.categories.splice(idx, 1);
+      this.updateInventoryInternalData();
     }
   }
 
@@ -215,6 +219,7 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
     };
     modalRef.result.then((item: InventoryItem) => {
       storage.items.push(item);
+      this.updateInventoryInternalData();
     });
   }
 
@@ -228,6 +233,7 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
       item.weight = edited.weight;
       item.count = edited.count;
       item.reference = edited.reference;
+      this.updateInventoryInternalData();
     });
   }
 
@@ -236,6 +242,7 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
     if (idx >= 0) {
       parent.items.splice(idx, 1);
     }
+    this.updateInventoryInternalData();
   }
 
   // -------------------------------------------------------------------------------------------------------------------
@@ -257,6 +264,8 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
     this.rebuildInventoryHierarchy(elementByIds, hierarchy, inventoryCopy);
 
     this.inventoryUiData = inventoryCopy;
+
+    this.updateInventoryInternalData();
   }
 
   private rebuildInventoryHierarchy(elementByIds, idsHierarchy, parentElement)  {
@@ -316,10 +325,42 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
     };
   }
 
+  private updateInventoryInternalData() {
+    this.computeInventoryTotalWeight(this.inventoryUiData);
+  }
+
+  private computeInventoryTotalWeight(inventory) {
+    if (inventory && inventory.categories) {
+      inventory.categories.forEach((storage) => {
+        if (storage) {
+          storage.totalWeight = 0;
+          if (storage.items){
+            storage.items.forEach((item) => {
+              if (item.count && item.weight) {
+                storage.totalWeight += item.count * item.weight;
+              }
+            });
+          }
+          if (storage.categories){
+            storage.categories.forEach((cat) => {
+              if (cat && cat.items) {
+                cat.items.forEach((item) => {
+                  if (item.count && item.weight) {
+                    storage.totalWeight += item.count * item.weight;
+                  }
+                });
+              }
+            });
+          }
+        }
+      });
+    }
+  }
+
   dragEnd() {
     setTimeout(() => {
       this.rebuildHierarchy();
-    }, 50)
+    }, 100)
   }
 
 
@@ -328,9 +369,10 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
       this.character = null;
       if (chr) {
         this.character = chr.character;
-        this.originalInventory = {... chr.inventory};
+        this.originalInventory = _.cloneDeep(chr.inventory);
 
-        this.inventoryUiData = this.fromServerRepresentation({... chr.inventory});
+        this.inventoryUiData = this.fromServerRepresentation(_.cloneDeep(chr.inventory));
+        this.updateInventoryInternalData();
       }
     });
   }

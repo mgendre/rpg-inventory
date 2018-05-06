@@ -4,6 +4,7 @@ export class InventoryElement {
   public label: string;
   public categories: InventoryElement[];
   public items: InventoryItem[];
+  public totalWeight: number;
 }
 
 export class InventoryItem extends InventoryElement {

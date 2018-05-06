@@ -11,19 +11,25 @@
           <span class="icon"></span>
         </span>
         {{location.label}}
-        <div class="contextual-controls" *ngIf="editMode">
-          <fa-icon class="icon-control"
-                   [icon]="['fas', 'edit']"
-                   (click)="editStorage(storageModal, location)">
-          </fa-icon>
-          <fa-icon class="icon-control"
-                   [icon]="['fas', 'trash']"
-                   mwlConfirmationPopover
-                   [popoverTitle]="'Delete this storage ?'"
-                   [popoverMessage]="'All items will be deleted'"
-                   placement="left"
-                   (confirm)="deleteStorage(location)">
-          </fa-icon>
+        <div class="location-misc">
+          <span class="total-weight">
+            <fa-icon [icon]="['fas', 'weight']"></fa-icon>
+            {{location.totalWeight}}
+          </span>
+          <div class="contextual-controls" *ngIf="editMode">
+            <fa-icon class="icon-control"
+                     [icon]="['fas', 'edit']"
+                     (click)="editStorage(storageModal, location)">
+            </fa-icon>
+            <fa-icon class="icon-control"
+                     [icon]="['fas', 'trash']"
+                     mwlConfirmationPopover
+                     [popoverTitle]="'Delete this storage ?'"
+                     [popoverMessage]="'All items will be deleted'"
+                     placement="left"
+                     (confirm)="deleteStorage(location)">
+            </fa-icon>
+          </div>
         </div>
       </div>
       <div class="element-location-content">
