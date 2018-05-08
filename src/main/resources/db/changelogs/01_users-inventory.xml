@@ -59,4 +59,25 @@
                              referencedColumnNames="id"
                              constraintName="fk_inventories_characters_id"/>
   </changeSet>
+
+  <changeSet author="mg" id="01d_character_sheet">
+    <createTable tableName="character_sheets">
+      <column name="id" type="bigint" autoIncrement="true">
+        <constraints primaryKey="true"
+                     primaryKeyName="character_sheets_pk"
+                     nullable="false"/>
+      </column>
+      <column name="character_id" type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="data" type="varchar(10485760)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <addForeignKeyConstraint baseTableName="character_sheets"
+                             baseColumnNames="character_id"
+                             referencedTableName="characters"
+                             referencedColumnNames="id"
+                             constraintName="fk_character_sheets_characters_id"/>
+  </changeSet>
 </databaseChangeLog>
