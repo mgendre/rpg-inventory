@@ -133,7 +133,7 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
   }
 
   cancel() {
-    this.inventoryUiData = this.fromServerRepresentation({... this.originalInventory});
+    this.inventoryUiData = this.fromServerRepresentation(_.cloneDeep(this.originalInventory));
     this.editMode = false;
     this.updateInventoryInternalData();
   }

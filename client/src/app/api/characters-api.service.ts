@@ -27,6 +27,14 @@ export class CharactersApiService {
   public getInventory(characterId: number): Promise<any> {
     return this.http.get<any>(`/api/v1/characters/${characterId}/inventory`).toPromise();
   }
+
+  public saveSheet(characterId: number, sheet: any): Promise<any> {
+    return this.http.post<any>(`/api/v1/characters/${characterId}/sheet`, sheet).toPromise();
+  }
+
+  public getSheet(characterId: number): Promise<any> {
+    return this.http.get<any>(`/api/v1/characters/${characterId}/sheet`).toPromise();
+  }
 }
 
 export class Character {

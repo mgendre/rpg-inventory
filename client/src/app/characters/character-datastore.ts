@@ -15,12 +15,19 @@ export class CharacterDataStoreService {
     const newChar = new FullCharacter();
     this.characterId = id;
     this.characterStore.next(null);
-    this.charactersApi.get(id).then((char) => {
-      this.charactersApi.getInventory(id).then((inventory) => {
+
+    Promise.all([
+      this.charactersApi.get(id).then((char) => {
         newChar.character = char;
+      }),
+      this.charactersApi.getInventory(id).then((inventory) => {
         newChar.inventory = inventory;
-        this.characterStore.next(newChar);
-      });
+      }),
+      this.charactersApi.getSheet(id).then((sheet) => {
+        newChar.sheet = sheet;
+      })
+    ]).then(() => {
+      this.characterStore.next(newChar);
     });
   }
 
@@ -28,6 +35,14 @@ export class CharacterDataStoreService {
     return this.charactersApi.saveInventory(this.characterId, inventory).then((inventory) => {
       const chr = this.characterStore.getValue();
       chr.inventory = inventory;
+      this.characterStore.next(chr);
+    });
+  }
+
+  public saveSheet(sheet: any) {
+    return this.charactersApi.saveSheet(this.characterId, sheet).then((sheet) => {
+      const chr = this.characterStore.getValue();
+      chr.sheet = sheet;
       this.characterStore.next(chr);
     });
   }
@@ -40,4 +55,5 @@ export class CharacterDataStoreService {
 export class FullCharacter {
   public character: Character = null;
   public inventory: any = null;
+  public sheet: any = null;
 }
