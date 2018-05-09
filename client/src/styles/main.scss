@@ -2,6 +2,8 @@
 @import "~@swimlane/ngx-dnd/release/index.css";
 @import "variables";
 
+@import "../app/characters/sheet/character.sheet";
+
 body, html {
   height: 100%;
   background: #FFFFFF;
@@ -160,5 +162,9 @@ body, html {
   /* Component override */
   .popover-title {
     color: black;
+  }
+
+  .value-label {
+    font-weight: bold;
   }
 }

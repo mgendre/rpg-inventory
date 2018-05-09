@@ -1,5 +1,8 @@
 <div class="sheet">
-  Character sheet (Coming soon)
+
+  <rpgi-read-write-group [writeMode]="editMode">
+    <rpgi-dh2-sheet [sheet]="sheet.data" [character]="character"></rpgi-dh2-sheet>
+  </rpgi-read-write-group>
 
   <div class="page-controls">
     <button type="button"
@@ -22,3 +25,4 @@
     </button>
   </div>
 </div>
+

@@ -49,9 +49,9 @@ export class CharacterSheetComponent implements OnInit, OnDestroy {
             data: {},
             id: null
           };
-          if (!this.sheet.data) {
-            this.sheet.data = {};
-          }
+        }
+        if (!this.sheet.data) {
+          this.sheet.data = {};
         }
         this.originalSheet = _.cloneDeep(this.sheet);
       }

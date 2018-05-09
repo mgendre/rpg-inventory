@@ -13,11 +13,13 @@ import {CharacterStoryComponent} from "./story/character.story.component";
 import {CharacterSheetComponent} from "./sheet/character.sheet.component";
 import {CharacterInventoryItemComponent} from "./inventory/character.inventory-item.component";
 import {CharacterInventoryItemEditComponent} from "./inventory/character.inventory-item-edit.component";
+import {Dh2Module} from "./sheet/dh2/dh2.module";
 
 @NgModule({
   imports: [
     RouterModule.forRoot([CHARACTERS_ROUTE], {useHash: true}),
-    AppCommonModule
+    AppCommonModule,
+    Dh2Module
   ],
   exports: [
   ],

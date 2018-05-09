@@ -1,0 +1,62 @@
+<form #infoForm="ngForm" class="info container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="form-group row">
+        <label class="col-sm-4">Character name</label>
+        <label class="col-sm-8 value-label">{{character.name}}</label>
+      </div>
+      <div class="form-group row">
+        <label for="sheet.homeWorld" class="col-sm-4">Home World</label>
+        <rpgi-read-write class="col-sm-8" [readOnlyValue]="sheet.info.homeWorld">
+          <input [(ngModel)]="sheet.info.homeWorld" id="sheet.homeWorld" name="homeWorld"
+                 class="form-control" type="text" />
+        </rpgi-read-write>
+      </div>
+      <div class="form-group row">
+        <label for="sheet.background" class="col-sm-4">Background</label>
+        <rpgi-read-write class="col-sm-8" [readOnlyValue]="sheet.info.background">
+          <input [(ngModel)]="sheet.info.background" id="sheet.background" name="background"
+                 class="form-control" type="text" />
+        </rpgi-read-write>
+      </div>
+      <div class="form-group row">
+        <label for="sheet.role" class="col-sm-4">Role</label>
+        <rpgi-read-write class="col-sm-8" [readOnlyValue]="sheet.info.role">
+          <input [(ngModel)]="sheet.info.role" id="sheet.role" name="role"
+                 class="form-control" type="text" />
+        </rpgi-read-write>
+      </div>
+      <div class="form-group row">
+        <label for="sheet.eliteAdvances" class="col-sm-4">Elite Advances</label>
+        <rpgi-read-write class="col-sm-8" [readOnlyValue]="sheet.info.eliteAdvances">
+          <input [(ngModel)]="sheet.info.eliteAdvances" id="sheet.eliteAdvances" name="eliteAdvances"
+                 class="form-control" type="text" />
+        </rpgi-read-write>
+      </div>
+      <div class="form-group row">
+        <label for="sheet.divination" class="col-sm-4">Divination</label>
+        <rpgi-read-write class="col-sm-8" [readOnlyValue]="sheet.info.divination">
+          <input [(ngModel)]="sheet.info.divination" id="sheet.divination" name="divination"
+                 class="form-control" type="text" />
+        </rpgi-read-write>
+      </div>
+      <div class="form-group row">
+        <label for="sheet.notes" class="col-sm-4">Notes</label>
+        <rpgi-read-write class="col-sm-8" [readOnlyValue]="sheet.info.notes">
+          <input [(ngModel)]="sheet.info.notes" id="sheet.notes" name="notes"
+                 class="form-control" type="text" />
+        </rpgi-read-write>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group row">
+        <label class="col-sm-4" for="sheet.playerName">Player name</label>
+        <rpgi-read-write class="col-sm-8" [readOnlyValue]="sheet.info.playerName">
+          <input [(ngModel)]="sheet.info.playerName" id="sheet.playerName" name="playerName"
+                 class="form-control" type="text" />
+        </rpgi-read-write>
+      </div>
+    </div>
+  </div>
+</form>
+
