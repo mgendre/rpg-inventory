@@ -1,8 +1,31 @@
 <div class="dh2">
-  <div class="card card-dark">
-    <div class="card-body">
-      <h5 class="card-title">Character</h5>
-      <rpgi-dh2-sheet-info [sheet]="sheet" [character]="character" class="card-text"></rpgi-dh2-sheet-info>
+  <div class="row">
+    <div class="col-lg">
+      <div class="card card-dark">
+        <div class="card-body">
+          <h5 class="card-title">Character</h5>
+          <rpgi-dh2-sheet-info [sheet]="sheet" [character]="character" class="card-text"></rpgi-dh2-sheet-info>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Characteristics</h5>
+          <rpgi-dh2-sheet-characteristics [sheet]="sheet" class="card-text"></rpgi-dh2-sheet-characteristics>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Characteristics</h5>
+          <rpgi-dh2-sheet-characteristics [sheet]="sheet" class="card-text"></rpgi-dh2-sheet-characteristics>
+        </div>
+      </div>
     </div>
   </div>
 </div>

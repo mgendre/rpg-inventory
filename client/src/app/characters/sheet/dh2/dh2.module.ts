@@ -2,6 +2,7 @@ import {NgModule} from "@angular/core";
 import {AppCommonModule} from "../../../app-common-module";
 import {Dh2SheetComponent} from "./dh2.sheet.component";
 import {Dh2SheetInfoComponent} from "./dh2.sheet.info.component";
+import {Dh2SheetCharacteristicsComponent} from "./dh2.sheet.characteristics.component";
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import {Dh2SheetInfoComponent} from "./dh2.sheet.info.component";
   ],
   declarations: [
     Dh2SheetComponent,
-    Dh2SheetInfoComponent
+    Dh2SheetInfoComponent,
+    Dh2SheetCharacteristicsComponent
   ]
 })
 export class Dh2Module {

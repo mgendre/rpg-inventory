@@ -1,0 +1,79 @@
+<form #infoForm="ngForm" class="characteristics container-fluid">
+  <div class="row">
+    <div class="col-md">
+      <div class="form-group row">
+        <label for="sheet.characteristics.ws" class="col-md-7">Weapon skill <span class="abbr"><strong>WS</strong></span></label>
+        <rpgi-read-write class="col-md-5" [readOnlyValue]="sheet.characteristics.ws">
+          <input [(ngModel)]="sheet.characteristics.ws" id="sheet.characteristics.ws" name="ws"
+                 class="form-control" type="number" step="1"/>
+        </rpgi-read-write>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-7" for="sheet.characteristics.bs">Ballistic skill <span class="abbr"><strong>BS</strong></span></label>
+        <rpgi-read-write class="col-md-5" [readOnlyValue]="sheet.characteristics.bs">
+          <input [(ngModel)]="sheet.characteristics.bs" id="sheet.characteristics.bs" name="bs"
+                 class="form-control" type="number" step="1"/>
+        </rpgi-read-write>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-7" for="sheet.characteristics.s">Strength <span class="abbr"><strong>S</strong></span></label>
+        <rpgi-read-write class="col-md-5" [readOnlyValue]="sheet.characteristics.s">
+          <input [(ngModel)]="sheet.characteristics.s" id="sheet.characteristics.s" name="s"
+                 class="form-control" type="number" step="1"/>
+        </rpgi-read-write>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-7" for="sheet.characteristics.t">Thoughness <span class="abbr"><strong>T</strong></span></label>
+        <rpgi-read-write class="col-md-5" [readOnlyValue]="sheet.characteristics.t">
+          <input [(ngModel)]="sheet.characteristics.t" id="sheet.characteristics.t" name="t"
+                 class="form-control" type="number" step="1"/>
+        </rpgi-read-write>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-7" for="sheet.characteristics.ag">Agility <span class="abbr"><strong>AG</strong></span></label>
+        <rpgi-read-write class="col-md-5" [readOnlyValue]="sheet.characteristics.ag">
+          <input [(ngModel)]="sheet.characteristics.ag" id="sheet.characteristics.ag" name="ag"
+                 class="form-control" type="number" step="1"/>
+        </rpgi-read-write>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="form-group row">
+        <label class="col-md-7" for="sheet.characteristics.int">Intelligence <span class="abbr"><strong>Int</strong></span></label>
+        <rpgi-read-write class="col-md-5" [readOnlyValue]="sheet.characteristics.int">
+          <input [(ngModel)]="sheet.characteristics.int" id="sheet.characteristics.int" name="int"
+                 class="form-control" type="number" step="1"/>
+        </rpgi-read-write>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-7" for="sheet.characteristics.per">Perception <span class="abbr"><strong>Per</strong></span></label>
+        <rpgi-read-write class="col-md-5" [readOnlyValue]="sheet.characteristics.per">
+          <input [(ngModel)]="sheet.characteristics.per" id="sheet.characteristics.per" name="per"
+                 class="form-control" type="number" step="1"/>
+        </rpgi-read-write>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-7" for="sheet.characteristics.wp">Willpower <span class="abbr"><strong>WP</strong></span></label>
+        <rpgi-read-write class="col-md-5" [readOnlyValue]="sheet.characteristics.wp">
+          <input [(ngModel)]="sheet.characteristics.wp" id="sheet.characteristics.wp" name="wp"
+                 class="form-control" type="number" step="1"/>
+        </rpgi-read-write>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-7" for="sheet.characteristics.fel">Fellowship <span class="abbr"><strong>Fel</strong></span></label>
+        <rpgi-read-write class="col-md-5" [readOnlyValue]="sheet.characteristics.fel">
+          <input [(ngModel)]="sheet.characteristics.fel" id="sheet.characteristics.fel" name="fel"
+                 class="form-control" type="number" step="1"/>
+        </rpgi-read-write>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-7" for="sheet.characteristics.inf">Influence <span class="abbr"><strong>Ifl</strong></span></label>
+        <rpgi-read-write class="col-md-5" [readOnlyValue]="sheet.characteristics.inf">
+          <input [(ngModel)]="sheet.characteristics.inf" id="sheet.characteristics.inf" name="inf"
+                 class="form-control" type="number" step="1"/>
+        </rpgi-read-write>
+      </div>
+    </div>
+  </div>
+</form>
+

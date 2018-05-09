@@ -24,5 +24,8 @@ export class Dh2SheetComponent {
     if (!this.sheet.info) {
       this.sheet.info = {};
     }
+    if (!this.sheet.characteristics) {
+      this.sheet.characteristics = {};
+    }
   }
 }
