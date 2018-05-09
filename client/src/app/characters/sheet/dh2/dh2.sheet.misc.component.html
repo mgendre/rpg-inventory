@@ -1,4 +1,4 @@
-<form #infoForm="ngForm" class="characteristics container-fluid">
+<form #infoForm="ngForm" class="misc container-fluid">
   <div class="row">
     <div class="col-lg">
       <h5>Experience</h5>
@@ -30,6 +30,28 @@
         <label class="col-lg-6" for="sheet.misc.fpCurrent">Current</label>
         <rpgi-read-write class="col-lg-6" [readOnlyValue]="sheet.misc.fpCurrent">
           <input [(ngModel)]="sheet.misc.fpCurrent" id="sheet.misc.fpCurrent" name="fpCurrent"
+                 class="form-control" type="number"/>
+        </rpgi-read-write>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row insanity">
+    <div class="col-lg">
+      <div class="form-group row">
+        <label class="col-lg-6 big" for="sheet.misc.insanity">Insanity (Is)</label>
+        <rpgi-read-write class="col-lg-6" [readOnlyValue]="sheet.misc.insanity">
+          <input [(ngModel)]="sheet.misc.insanity" id="sheet.misc.insanity" name="insanity"
+                 class="form-control" type="number"/>
+        </rpgi-read-write>
+      </div>
+    </div>
+    <div class="col-lg">
+      <div class="form-group row">
+        <label class="col-lg-6 big" for="sheet.misc.corruption">Corruption (C)</label>
+        <rpgi-read-write class="col-lg-6" [readOnlyValue]="sheet.misc.corruption">
+          <input [(ngModel)]="sheet.misc.corruption" id="sheet.misc.corruption" name="corruption"
                  class="form-control" type="number"/>
         </rpgi-read-write>
       </div>
