@@ -43,6 +43,7 @@ body, html {
     left: 0;
     right: 0;
     top: $navbarHeight;
+    z-index: 5;
 
     .title {
       display: inline-block;
@@ -166,5 +167,13 @@ body, html {
 
   .value-label {
     font-weight: bold;
+  }
+
+  .card {
+    box-shadow: $defaultBoxShadow;
+  }
+  .card-dark {
+    background: $colorMain3;
+    color: white;
   }
 }

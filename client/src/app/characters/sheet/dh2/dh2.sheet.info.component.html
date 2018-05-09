@@ -1,61 +1,133 @@
 <form #infoForm="ngForm" class="info container-fluid">
   <div class="row">
-    <div class="col">
+    <div class="col-md">
       <div class="form-group row">
-        <label class="col-sm-4">Character name</label>
-        <label class="col-sm-8 value-label">{{character.name}}</label>
+        <label class="col-lg-4">Character name</label>
+        <label class="col-lg-8 value-label">{{character.name}}</label>
       </div>
       <div class="form-group row">
-        <label for="sheet.homeWorld" class="col-sm-4">Home World</label>
-        <rpgi-read-write class="col-sm-8" [readOnlyValue]="sheet.info.homeWorld">
+        <label for="sheet.homeWorld" class="col-lg-4">Home World</label>
+        <rpgi-read-write class="col-lg-8" [readOnlyValue]="sheet.info.homeWorld">
           <input [(ngModel)]="sheet.info.homeWorld" id="sheet.homeWorld" name="homeWorld"
-                 class="form-control" type="text" />
+                 class="form-control" type="text"/>
         </rpgi-read-write>
       </div>
       <div class="form-group row">
-        <label for="sheet.background" class="col-sm-4">Background</label>
-        <rpgi-read-write class="col-sm-8" [readOnlyValue]="sheet.info.background">
+        <label for="sheet.background" class="col-lg-4">Background</label>
+        <rpgi-read-write class="col-lg-8" [readOnlyValue]="sheet.info.background">
           <input [(ngModel)]="sheet.info.background" id="sheet.background" name="background"
-                 class="form-control" type="text" />
+                 class="form-control" type="text"/>
         </rpgi-read-write>
       </div>
       <div class="form-group row">
-        <label for="sheet.role" class="col-sm-4">Role</label>
-        <rpgi-read-write class="col-sm-8" [readOnlyValue]="sheet.info.role">
+        <label for="sheet.role" class="col-lg-4">Role</label>
+        <rpgi-read-write class="col-lg-8" [readOnlyValue]="sheet.info.role">
           <input [(ngModel)]="sheet.info.role" id="sheet.role" name="role"
-                 class="form-control" type="text" />
+                 class="form-control" type="text"/>
         </rpgi-read-write>
       </div>
       <div class="form-group row">
-        <label for="sheet.eliteAdvances" class="col-sm-4">Elite Advances</label>
-        <rpgi-read-write class="col-sm-8" [readOnlyValue]="sheet.info.eliteAdvances">
+        <label for="sheet.eliteAdvances" class="col-lg-4">Elite Advances</label>
+        <rpgi-read-write class="col-lg-8" [readOnlyValue]="sheet.info.eliteAdvances">
           <input [(ngModel)]="sheet.info.eliteAdvances" id="sheet.eliteAdvances" name="eliteAdvances"
-                 class="form-control" type="text" />
+                 class="form-control" type="text"/>
         </rpgi-read-write>
       </div>
       <div class="form-group row">
-        <label for="sheet.divination" class="col-sm-4">Divination</label>
-        <rpgi-read-write class="col-sm-8" [readOnlyValue]="sheet.info.divination">
+        <label for="sheet.divination" class="col-lg-4">Divination</label>
+        <rpgi-read-write class="col-lg-8" [readOnlyValue]="sheet.info.divination">
           <input [(ngModel)]="sheet.info.divination" id="sheet.divination" name="divination"
-                 class="form-control" type="text" />
+                 class="form-control" type="text"/>
         </rpgi-read-write>
       </div>
       <div class="form-group row">
-        <label for="sheet.notes" class="col-sm-4">Notes</label>
-        <rpgi-read-write class="col-sm-8" [readOnlyValue]="sheet.info.notes">
-          <input [(ngModel)]="sheet.info.notes" id="sheet.notes" name="notes"
-                 class="form-control" type="text" />
+        <label class="col-lg-4" for="sheet.playerName">Player name</label>
+        <rpgi-read-write class="col-lg-8" [readOnlyValue]="sheet.info.playerName">
+          <input [(ngModel)]="sheet.info.playerName" id="sheet.playerName" name="playerName"
+                 class="form-control" type="text"/>
+        </rpgi-read-write>
+      </div>
+      <div class="form-group row">
+        <label class="col-lg-4" for="sheet.allies">Allies</label>
+        <rpgi-read-write class="col-lg-8" [readOnlyValue]="sheet.info.allies">
+          <input [(ngModel)]="sheet.info.allies" id="sheet.allies" name="allies"
+                 class="form-control" type="text"/>
+        </rpgi-read-write>
+      </div>
+      <div class="form-group row">
+        <label class="col-lg-4" for="sheet.ennemies">Ennemies</label>
+        <rpgi-read-write class="col-lg-8" [readOnlyValue]="sheet.info.ennemies">
+          <input [(ngModel)]="sheet.info.ennemies" id="sheet.ennemies" name="ennemies"
+                 class="form-control" type="text"/>
         </rpgi-read-write>
       </div>
     </div>
-    <div class="col">
+    <div class="col-md">
       <div class="form-group row">
-        <label class="col-sm-4" for="sheet.playerName">Player name</label>
-        <rpgi-read-write class="col-sm-8" [readOnlyValue]="sheet.info.playerName">
-          <input [(ngModel)]="sheet.info.playerName" id="sheet.playerName" name="playerName"
-                 class="form-control" type="text" />
+        <label class="col-lg-4" for="sheet.gender">Gender</label>
+        <rpgi-read-write class="col-lg-8" [readOnlyValue]="sheet.info.gender">
+          <input [(ngModel)]="sheet.info.gender" id="sheet.gender" name="gender"
+                 class="form-control" type="text"/>
         </rpgi-read-write>
       </div>
+      <div class="form-group row">
+        <label class="col-lg-4" for="sheet.age">Age</label>
+        <rpgi-read-write class="col-lg-8" [readOnlyValue]="sheet.info.age">
+          <input [(ngModel)]="sheet.info.age" id="sheet.age" name="age"
+                 class="form-control" type="text"/>
+        </rpgi-read-write>
+      </div>
+      <div class="form-group row">
+        <label class="col-lg-4" for="sheet.build">Build</label>
+        <rpgi-read-write class="col-lg-8" [readOnlyValue]="sheet.info.build">
+          <input [(ngModel)]="sheet.info.build" id="sheet.build" name="build"
+                 class="form-control" type="text"/>
+        </rpgi-read-write>
+      </div>
+      <div class="form-group row">
+        <label class="col-lg-4" for="sheet.complexion">Complexion</label>
+        <rpgi-read-write class="col-lg-8" [readOnlyValue]="sheet.info.complexion">
+          <input [(ngModel)]="sheet.info.complexion" id="sheet.complexion" name="complexion"
+                 class="form-control" type="text"/>
+        </rpgi-read-write>
+      </div>
+      <div class="form-group row">
+        <label class="col-lg-4" for="sheet.hair">Hair</label>
+        <rpgi-read-write class="col-lg-8" [readOnlyValue]="sheet.info.hair">
+          <input [(ngModel)]="sheet.info.hair" id="sheet.hair" name="hair"
+                 class="form-control" type="text"/>
+        </rpgi-read-write>
+      </div>
+      <div class="form-group row">
+        <label class="col-lg-4" for="sheet.quirks">Quirks</label>
+        <rpgi-read-write class="col-lg-8" [readOnlyValue]="sheet.info.quirks">
+          <input [(ngModel)]="sheet.info.quirks" id="sheet.quirks" name="quirks"
+                 class="form-control" type="text"/>
+        </rpgi-read-write>
+      </div>
+      <div class="form-group row">
+        <label class="col-lg-4" for="sheet.superstitions">Superstitions</label>
+        <rpgi-read-write class="col-lg-8" [readOnlyValue]="sheet.info.superstitions">
+          <input [(ngModel)]="sheet.info.superstitions" id="sheet.superstitions" name="quirks"
+                 class="form-control" type="text"/>
+        </rpgi-read-write>
+      </div>
+      <div class="form-group row">
+        <label class="col-lg-4" for="sheet.mementos">Mementos</label>
+        <rpgi-read-write class="col-lg-8" [readOnlyValue]="sheet.info.mementos">
+          <input [(ngModel)]="sheet.info.mementos" id="sheet.mementos" name="mementos"
+                 class="form-control" type="text"/>
+        </rpgi-read-write>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="height: 60px;">
+    <div class="form-group col-12">
+      <label for="sheet.notes">Notes</label>
+      <rpgi-read-write [readOnlyValue]="sheet.info.notes">
+        <input [(ngModel)]="sheet.info.notes" id="sheet.notes" name="notes"
+               class="form-control" type="text"/>
+      </rpgi-read-write>
     </div>
   </div>
 </form>
