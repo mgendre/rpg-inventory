@@ -176,4 +176,19 @@ body, html {
     background: $colorMain3;
     color: white;
   }
+
+  .editable-list {
+    .item {
+      height: 38px;
+      position: relative;
+
+      .remove {
+        position: absolute;
+        right: 9px;
+        top: 3px;
+        z-index: 2;
+        background: red;
+      }
+    }
+  }
 }

@@ -20,6 +20,9 @@ export class Dh2SheetComponent {
   @Input()
   character: any;
 
+  @Input()
+  editMode: boolean = false;
+
   private initSheet() {
     if (!this.sheet.info) {
       this.sheet.info = {};

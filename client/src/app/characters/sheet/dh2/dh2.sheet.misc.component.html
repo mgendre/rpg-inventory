@@ -46,6 +46,9 @@
                  class="form-control" type="number"/>
         </rpgi-read-write>
       </div>
+      <div>
+        <rpgi-editable-list [items]="sheet.misc.mentalDisorders" [writeMode]="editMode"></rpgi-editable-list>
+      </div>
     </div>
     <div class="col-lg">
       <div class="form-group row">
@@ -57,5 +60,7 @@
       </div>
     </div>
   </div>
-</form>
+
+
+{{sheet.misc | json}}</form>
 
