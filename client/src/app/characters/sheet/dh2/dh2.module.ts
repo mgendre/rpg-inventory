@@ -7,6 +7,7 @@ import {Dh2SheetMiscComponent} from "./dh2.sheet.misc.component";
 import {Dh2SheetSkillsComponent, Dh2SkillComponent, Dh2SkillListComponent} from "./dh2.sheet.skills.component";
 import {Dh2SheetTalentsComponent} from "./dh2.sheet.talents.component";
 import {Dh2SheetAbilitiesComponent} from "./dh2.sheet.abilities.component";
+import {Dh2SheetPsyComponent} from "./dh2.sheet.psy.component";
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import {Dh2SheetAbilitiesComponent} from "./dh2.sheet.abilities.component";
     Dh2SkillComponent,
     Dh2SkillListComponent,
     Dh2SheetTalentsComponent,
-    Dh2SheetAbilitiesComponent
+    Dh2SheetAbilitiesComponent,
+    Dh2SheetPsyComponent
   ]
 })
 export class Dh2Module {
