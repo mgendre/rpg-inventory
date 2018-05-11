@@ -19,17 +19,35 @@
         </div>
       </div>
 
+      <div class="card card">
+        <div class="card-body">
+          <h5 class="card-title">Skills</h5>
+          <rpgi-dh2-sheet-skills [sheet]="sheet" [editMode]="editMode" class="card-text"></rpgi-dh2-sheet-skills>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg">
       <div class="card">
         <div class="card-body">
           <rpgi-dh2-sheet-misc [sheet]="sheet" [editMode]="editMode" class="card-text"></rpgi-dh2-sheet-misc>
         </div>
       </div>
-    </div>
-    <div class="col-lg">
       <div class="card">
         <div class="card-body">
+          <h5 class="card-title">Talents & Traits</h5>
+          <rpgi-dh2-sheet-talents [sheet]="sheet" [editMode]="editMode" class="card-text"></rpgi-dh2-sheet-talents>
         </div>
       </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Special Abilities</h5>
+          <rpgi-dh2-sheet-abilities [sheet]="sheet" [editMode]="editMode" class="card-text"></rpgi-dh2-sheet-abilities>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg">
     </div>
   </div>
 </div>

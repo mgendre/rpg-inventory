@@ -4,6 +4,7 @@ import {CommonModule} from "@angular/common";
 import {ReadWriteGroupComponent} from "./ui/forms/read-write-group.component";
 import {EditableListComponent} from "./ui/forms/editable-list.component";
 import {FormsModule} from "@angular/forms";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import {FormsModule} from "@angular/forms";
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ],
   exports: [
     ReadWriteComponent,

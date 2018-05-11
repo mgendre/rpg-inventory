@@ -1,6 +1,6 @@
 <form #infoForm="ngForm" class="misc container-fluid">
   <div class="row">
-    <div class="col-lg">
+    <div class="col-xl">
       <h5>Experience</h5>
       <div class="form-group row">
         <label class="col-lg-6" for="sheet.misc.xpToSpend">XP to spend</label>
@@ -38,7 +38,7 @@
 
 
   <div class="row insanity">
-    <div class="col-lg">
+    <div class="col-xl">
       <div class="form-group row">
         <label class="col-lg-6 big" for="sheet.misc.insanity">Insanity (Is)</label>
         <rpgi-read-write class="col-lg-6" [readOnlyValue]="sheet.misc.insanity">
@@ -47,6 +47,7 @@
         </rpgi-read-write>
       </div>
       <div>
+        <h5>Mental Disorders</h5>
         <rpgi-editable-list [items]="sheet.misc.mentalDisorders" [writeMode]="editMode"></rpgi-editable-list>
       </div>
     </div>
@@ -58,9 +59,21 @@
                  class="form-control" type="number"/>
         </rpgi-read-write>
       </div>
+      <div>
+        <h5>Malignances</h5>
+        <rpgi-editable-list [items]="sheet.misc.malignances" [writeMode]="editMode"></rpgi-editable-list>
+      </div>
+      <div>
+        <h5>Mutations</h5>
+        <rpgi-editable-list [items]="sheet.misc.mutations" [writeMode]="editMode"></rpgi-editable-list>
+      </div>
     </div>
   </div>
-
-
-{{sheet.misc | json}}</form>
+  <div class="row">
+    <div class="col-lg">
+      <h5>Aptitudes</h5>
+      <rpgi-editable-list [items]="sheet.misc.aptitudes" [writeMode]="editMode"></rpgi-editable-list>
+    </div>
+  </div>
+</form>
 

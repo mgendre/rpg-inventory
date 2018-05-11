@@ -26,5 +26,14 @@ export class Dh2SheetMiscComponent {
     if (!this._sheet.misc.mentalDisorders) {
       this._sheet.misc.mentalDisorders = [];
     }
+    if (!this._sheet.misc.malignances) {
+      this._sheet.misc.malignances = [];
+    }
+    if (!this._sheet.misc.mutations) {
+      this._sheet.misc.mutations = [];
+    }
+    if (!this._sheet.misc.aptitudes) {
+      this._sheet.misc.aptitudes = [];
+    }
   }
 }
