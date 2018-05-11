@@ -1,4 +1,42 @@
-<form #infoForm="ngForm" class="info container-fluid">
-  <h1>ARMOR</h1>
+<form #infoForm="ngForm" class="misc container-fluid">
+  <div class="row">
+    <div class="col-xl">
+      TODO
+    </div>
+    <div class="col-xl">
+      <h5>Wounds</h5>
+      <div class="form-group row">
+        <label class="col-lg-6" for="sheet.defence.woundsTotal">Total</label>
+        <rpgi-read-write class="col-lg-6" [readOnlyValue]="sheet.defence.woundsTotal">
+          <input [(ngModel)]="sheet.defence.woundsTotal" id="sheet.defence.woundsTotal" name="woundsTotal"
+                 step="1" class="form-control" type="number"/>
+        </rpgi-read-write>
+      </div>
+      <div class="form-group row">
+        <label class="col-lg-6" for="sheet.defence.woundsCurrent">Current</label>
+        <rpgi-read-write class="col-lg-6" [readOnlyValue]="sheet.defence.woundsCurrent">
+          <input [(ngModel)]="sheet.defence.woundsCurrent" id="sheet.defence.woundsCurrent" name="woundsCurrent"
+                 step="1" class="form-control" type="number"/>
+        </rpgi-read-write>
+      </div>
+      <h5>Critical Damage</h5>
+      <div class="form-group row">
+        <label class="col-lg-6" for="sheet.defence.criticalDamage">Total</label>
+        <rpgi-read-write class="col-lg-6" [readOnlyValue]="sheet.defence.criticalDamage">
+          <input [(ngModel)]="sheet.defence.criticalDamage" id="sheet.defence.criticalDamage" name="criticalDamage"
+                 step="1" class="form-control" type="number"/>
+        </rpgi-read-write>
+      </div>
+      <h5>Notes</h5>
+      <div class="form-group">
+        <rpgi-read-write [readOnlyValue]="sheet.defence.notes">
+          <textarea [(ngModel)]="sheet.defence.notes"
+                    id="sheet.defence.notes"
+                    name="notes"
+                    class="form-control">
+          </textarea>
+        </rpgi-read-write>
+      </div>
+    </div>
+  </div>
 </form>
-
