@@ -1,7 +1,139 @@
 <form #infoForm="ngForm" class="misc container-fluid">
   <div class="row">
-    <div class="col-xl">
-      TODO
+    <div class="col-xl armour-ui">
+      <div *ngIf="!editMode">
+        <div class="bg">
+          <fa-icon [icon]="['fas', 'male']"></fa-icon>
+        </div>
+
+        <div class="item head">
+          <div class="legend">
+            <span class="title">H</span>
+            <span class="limits">01-10</span>
+          </div>
+          <div class="values">
+            <span class="armour"><fa-icon [icon]="['fas', 'shield-alt']"></fa-icon>{{sheet.defence.positionHeadArmour}}</span>
+            <span class="total">{{sheet.defence.positionHeadTotal}}</span>
+          </div>
+        </div>
+
+        <div class="item ar">
+          <div class="legend">
+            <span class="title">AR</span>
+            <span class="limits">11-20</span>
+          </div>
+          <div class="values">
+            <span class="armour"><fa-icon [icon]="['fas', 'shield-alt']"></fa-icon>{{sheet.defence.positionARArmour}}</span>
+            <span class="total">{{sheet.defence.positionARTotal}}</span>
+          </div>
+        </div>
+
+        <div class="item al">
+          <div class="legend">
+            <span class="title">AL</span>
+            <span class="limits">21-30</span>
+          </div>
+          <div class="values">
+            <span class="armour"><fa-icon [icon]="['fas', 'shield-alt']"></fa-icon>{{sheet.defence.positionALArmour}}</span>
+            <span class="total">{{sheet.defence.positionALTotal}}</span>
+          </div>
+        </div>
+
+        <div class="item body">
+          <div class="legend">
+            <span class="title">B</span>
+            <span class="limits">31-70</span>
+          </div>
+          <div class="values">
+            <span class="armour"><fa-icon [icon]="['fas', 'shield-alt']"></fa-icon>{{sheet.defence.positionBodyArmour}}</span>
+            <span class="total">{{sheet.defence.positionBodyTotal}}</span>
+          </div>
+        </div>
+
+        <div class="item lr">
+          <div class="legend">
+            <span class="title">LR</span>
+            <span class="limits">71-85</span>
+          </div>
+          <div class="values">
+            <span class="armour"><fa-icon [icon]="['fas', 'shield-alt']"></fa-icon>{{sheet.defence.positionARArmour}}</span>
+            <span class="total">{{sheet.defence.positionARTotal}}</span>
+          </div>
+        </div>
+        <div class="item ll">
+          <div class="legend">
+            <span class="title">LL</span>
+            <span class="limits">86-00</span>
+          </div>
+          <div class="values">
+            <span class="armour"><fa-icon [icon]="['fas', 'shield-alt']"></fa-icon>{{sheet.defence.positionALArmour}}</span>
+            <span class="total">{{sheet.defence.positionALTotal}}</span>
+          </div>
+        </div>
+
+      </div>
+      <div *ngIf="editMode">
+        <div class="form-group row">
+          <label class="col-md-8" for="sheet.defence.positionHeadArmour">Head Armour</label>
+          <input [(ngModel)]="sheet.defence.positionHeadArmour" id="sheet.defence.positionHeadArmour" name="positionHeadArmour"
+                 step="1" class="form-control col-md-4" type="number"/>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-8" for="sheet.defence.positionHeadTotal">Head Total</label>
+          <input [(ngModel)]="sheet.defence.positionHeadTotal" id="sheet.defence.positionHeadTotal" name="positionHeadTotal"
+                 step="1" class="form-control col-md-4" type="number"/>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-8" for="sheet.defence.positionARArmour">AR Armour</label>
+          <input [(ngModel)]="sheet.defence.positionARArmour" id="sheet.defence.positionARArmour" name="positionARArmour"
+                 step="1" class="form-control col-md-4" type="number"/>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-8" for="sheet.defence.positionARTotal">AR Total</label>
+          <input [(ngModel)]="sheet.defence.positionARTotal" id="sheet.defence.positionARTotal" name="positionARTotal"
+                 step="1" class="form-control col-md-4" type="number"/>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-8" for="sheet.defence.positionALArmour">AL Armour</label>
+          <input [(ngModel)]="sheet.defence.positionALArmour" id="sheet.defence.positionALArmour" name="positionALArmour"
+                 step="1" class="form-control col-md-4" type="number"/>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-8" for="sheet.defence.positionALTotal">AL Total</label>
+          <input [(ngModel)]="sheet.defence.positionALTotal" id="sheet.defence.positionALTotal" name="positionALTotal"
+                 step="1" class="form-control col-md-4" type="number"/>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-8" for="sheet.defence.positionBodyArmour">Body Armour</label>
+          <input [(ngModel)]="sheet.defence.positionBodyArmour" id="sheet.defence.positionBodyArmour" name="positionBodyArmour"
+                 step="1" class="form-control col-md-4" type="number"/>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-8" for="sheet.defence.positionBodyTotal">Body Total</label>
+          <input [(ngModel)]="sheet.defence.positionBodyTotal" id="sheet.defence.positionBodyTotal" name="positionBodyTotal"
+                 step="1" class="form-control col-md-4" type="number"/>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-8" for="sheet.defence.positionLRArmour">LR Armour</label>
+          <input [(ngModel)]="sheet.defence.positionLRArmour" id="sheet.defence.positionLRArmour" name="positionLRArmour"
+                 step="1" class="form-control col-md-4" type="number"/>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-8" for="sheet.defence.positionLRTotal">LR Total</label>
+          <input [(ngModel)]="sheet.defence.positionLRTotal" id="sheet.defence.positionLRTotal" name="positionLRTotal"
+                 step="1" class="form-control col-md-4" type="number"/>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-8" for="sheet.defence.positionLLArmour">LL Armour</label>
+          <input [(ngModel)]="sheet.defence.positionLLArmour" id="sheet.defence.positionLLArmour" name="positionLLArmour"
+                 step="1" class="form-control col-md-4" type="number"/>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-8" for="sheet.defence.positionLLTotal">LL Total</label>
+          <input [(ngModel)]="sheet.defence.positionLLTotal" id="sheet.defence.positionLLTotal" name="positionLLTotal"
+                 step="1" class="form-control col-md-4" type="number"/>
+        </div>
+      </div>
     </div>
     <div class="col-xl">
       <h5>Wounds</h5>

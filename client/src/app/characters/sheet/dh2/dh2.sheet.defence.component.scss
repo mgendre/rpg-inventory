@@ -1,0 +1,87 @@
+@import "../../../../styles/variables";
+.armour-ui {
+  position: relative;
+  min-height: 350px;
+  width: 300px;
+
+  .bg {
+    position: absolute;
+    font-size: 220px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: $colorMain3;
+  }
+
+  .head {
+    left: 80px;
+    top: 0;
+  }
+  .ar {
+    left: 0;
+    top: 90px;
+  }
+  .al {
+    right: 0;
+    top: 90px;
+  }
+  .body {
+    left: 80px;
+    top: 180px;
+  }
+  .lr {
+    left: 0;
+    bottom: 0;
+  }
+  .ll {
+    right: 0;
+    bottom: 0;
+  }
+
+  .item {
+    position: absolute;
+    border: 1px solid $colorMain1;
+    background: white;
+    .legend {
+      width: 60px;
+      background: $colorMain1;
+      color: white;
+      float: left;
+      padding: 3px;
+      text-align: center;
+      height: 65px;
+      .title {
+        font-weight: bold;
+        display: block;
+        font-size: 16px;
+      }
+      .limits {
+        font-size: 12px;
+      }
+    }
+    .values {
+      position: relative;
+      float: left;
+      width: 55px;
+
+      .armour {
+        padding: 2px;
+        display: block;
+        background: #c69500;
+        color: white;
+
+        fa-icon {
+          margin-right: 5px;
+        }
+      }
+
+      .total {
+        padding: 3px;
+        display: block;
+        font-weight: bold;
+        font-size: 18px;
+        text-align: center;
+      }
+    }
+  }
+}
