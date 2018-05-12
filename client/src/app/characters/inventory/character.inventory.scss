@@ -158,4 +158,12 @@
   .move-dropdown {
     display: inline-block;
   }
+  .dropdown-menu {
+    margin-left: -120px;
+    .title {
+      text-align: center;
+      display: block;
+      font-weight: bold;
+    }
+  }
 }

@@ -4,7 +4,16 @@
   .rpgi {
     .container-with-vertical-actions {
       margin: 15px;
-      padding: 50px 0 0 $verticalActionsWidth;
+      padding: 50px 0 100px $verticalActionsWidth;
+    }
+  }
+}
+
+@media (max-width: $rootContainerMaxWidth + 50) {
+  .rpgi {
+    .root-container {
+      margin-left: 15px;
+      margin-right: 15px;
     }
   }
 }

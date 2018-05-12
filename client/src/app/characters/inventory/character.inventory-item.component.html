@@ -13,8 +13,10 @@
       {{item.count}}
     </div>
     <div class="weight">
-      <fa-icon class="icon-legend" [icon]="['fas', 'weight']" *ngIf="item.weight"></fa-icon>
-      {{item.weight}}<span *ngIf="item.count">/{{item.weight * item.count  | number:'1.0-2'}}</span>
+      <span *ngIf="item.weight && item.weight > 0">
+        <fa-icon class="icon-legend" [icon]="['fas', 'weight']"></fa-icon>
+        {{item.weight}}<span *ngIf="item.count">/{{item.weight * item.count  | number:'1.0-2'}}</span>
+      </span>
     </div>
     <div class="contextual-controls" *ngIf="editMode">
 
@@ -26,7 +28,7 @@
                  [icon]="['fas', 'share-square']">
         </fa-icon>
         <div ngbDropdownMenu>
-          <span>Move to:</span>
+          <span class="title">Move to:</span>
           <button *ngFor="let location of inventory.categories"
                   class="dropdown-item"
                   (click)="move.emit(location)">

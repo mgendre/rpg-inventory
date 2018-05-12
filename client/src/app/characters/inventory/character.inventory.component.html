@@ -56,7 +56,7 @@
                            [icon]="['fas', 'share-square']">
                   </fa-icon>
                   <div ngbDropdownMenu>
-                    <span>Move to:</span>
+                    <span class="title">Move to:</span>
                     <button *ngFor="let destination of inventoryUiData.categories"
                             class="dropdown-item"
                             (click)="moveCategory(destination, location, category)">
