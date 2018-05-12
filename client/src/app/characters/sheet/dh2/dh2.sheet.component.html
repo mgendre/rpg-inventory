@@ -1,39 +1,46 @@
-<div class="dh2">
-  <div class="row">
-    <div class="col-lg">
-      <div class="card card-dark">
-        <div class="card-body">
-          <h5 class="card-title">Character</h5>
-          <rpgi-dh2-sheet-info [sheet]="sheet" [character]="character" class="card-text"></rpgi-dh2-sheet-info>
-        </div>
-      </div>
+<div class="dh2 container">
+  <div class="card card-dark">
+    <div class="card-body">
+      <h5 class="card-title">Character</h5>
+      <rpgi-dh2-sheet-info [sheet]="sheet" [character]="character" class="card-text"></rpgi-dh2-sheet-info>
+    </div>
+  </div>
+
+  <div class="card card-dark">
+    <div class="card-body">
+      <h5 class="card-title">Characteristics</h5>
+      <rpgi-dh2-sheet-characteristics [sheet]="sheet" class="card-text"></rpgi-dh2-sheet-characteristics>
+    </div>
+  </div>
+
+  <div class="card card">
+    <div class="card-body">
+      <h5 class="card-title">Skills</h5>
+      <rpgi-dh2-sheet-skills [sheet]="sheet" [editMode]="editMode" class="card-text"></rpgi-dh2-sheet-skills>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Armour and Defence</h5>
+      <rpgi-dh2-sheet-defence [sheet]="sheet" [editMode]="editMode" class="card-text"></rpgi-dh2-sheet-defence>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Movement</h5>
+      <rpgi-dh2-sheet-movement [sheet]="sheet" [editMode]="editMode" class="card-text"></rpgi-dh2-sheet-movement>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <rpgi-dh2-sheet-misc [sheet]="sheet" [editMode]="editMode" class="card-text"></rpgi-dh2-sheet-misc>
     </div>
   </div>
 
   <div class="row">
     <div class="col-lg">
-      <div class="card card-dark">
-        <div class="card-body">
-          <h5 class="card-title">Characteristics</h5>
-          <rpgi-dh2-sheet-characteristics [sheet]="sheet" class="card-text"></rpgi-dh2-sheet-characteristics>
-        </div>
-      </div>
-
-      <div class="card card">
-        <div class="card-body">
-          <h5 class="card-title">Skills</h5>
-          <rpgi-dh2-sheet-skills [sheet]="sheet" [editMode]="editMode" class="card-text"></rpgi-dh2-sheet-skills>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-lg">
-      <div class="card">
-        <div class="card-body">
-          <rpgi-dh2-sheet-misc [sheet]="sheet" [editMode]="editMode" class="card-text"></rpgi-dh2-sheet-misc>
-        </div>
-      </div>
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Talents & Traits</h5>
@@ -46,24 +53,12 @@
           <rpgi-dh2-sheet-abilities [sheet]="sheet" [editMode]="editMode" class="card-text"></rpgi-dh2-sheet-abilities>
         </div>
       </div>
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Psychic</h5>
-          <rpgi-dh2-sheet-psy [sheet]="sheet" [editMode]="editMode" class="card-text"></rpgi-dh2-sheet-psy>
-        </div>
-      </div>
     </div>
     <div class="col-lg">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Armour and Defence</h5>
-          <rpgi-dh2-sheet-defence [sheet]="sheet" [editMode]="editMode" class="card-text"></rpgi-dh2-sheet-defence>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Movement</h5>
-          <rpgi-dh2-sheet-movement [sheet]="sheet" [editMode]="editMode" class="card-text"></rpgi-dh2-sheet-movement>
+          <h5 class="card-title">Psychic</h5>
+          <rpgi-dh2-sheet-psy [sheet]="sheet" [editMode]="editMode" class="card-text"></rpgi-dh2-sheet-psy>
         </div>
       </div>
     </div>
