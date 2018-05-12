@@ -37,6 +37,10 @@ html {
     a {
       color: $colorNavbarFont;
     }
+
+    .dropdown-menu a {
+      color: $defaultFontColor;
+    }
   }
   .sub-navbar {
     $topPadding: 9px;
