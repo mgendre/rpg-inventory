@@ -38,7 +38,7 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
     return {
       label: item.label,
       reference: item.reference,
-      comments: item.command,
+      comments: item.comments,
       weight: item.weight,
       count: item.count
     };
