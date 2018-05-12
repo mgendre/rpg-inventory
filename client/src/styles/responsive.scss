@@ -1,0 +1,10 @@
+@import "variables";
+
+@media (max-width: 1024px) {
+  .rpgi {
+    .container-with-vertical-actions {
+      margin: 15px;
+      padding: 50px 0 0 $verticalActionsWidth;
+    }
+  }
+}

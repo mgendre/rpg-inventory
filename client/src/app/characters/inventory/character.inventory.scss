@@ -1,5 +1,11 @@
 @import "../../../styles/variables";
 
+.inventory {
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .element-location {
   box-shadow: $defaultBoxShadow;
   background: white;

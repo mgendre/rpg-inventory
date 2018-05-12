@@ -1,4 +1,4 @@
-<div class="inventory container">
+<div class="inventory">
   <div class="element-root" [ngClass]="{'read-only': !editMode}" ngxDroppable="locations" (drop)="dragEnd()">
     <div class="element-location inventory-element"
          ngxDraggable="locations"
@@ -13,7 +13,7 @@
         {{location.label}}
         <div class="location-misc">
           <span class="total-weight">
-            <fa-icon [icon]="['fas', 'weight']"></fa-icon> mnj
+            <fa-icon [icon]="['fas', 'weight']"></fa-icon>
             {{location.totalWeight | number:'1.0-2'}}
           </span>
           <div class="contextual-controls" *ngIf="editMode">
