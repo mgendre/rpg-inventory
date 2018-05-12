@@ -11,6 +11,8 @@ body, html {
 
 html {
   touch-action: manipulation;
+  font-family: $defaultFontFamily;
+  color: $defaultFontColor;
 }
 
 .rpgi {
@@ -197,5 +199,11 @@ html {
         cursor: pointer;
       }
     }
+  }
+
+  pre {
+    font-size: 13px;
+    font-family: $defaultFontFamily;
+    color: $defaultFontColor;
   }
 }
