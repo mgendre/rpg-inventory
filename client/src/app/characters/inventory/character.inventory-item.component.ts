@@ -13,6 +13,10 @@ export class CharacterInventoryItemComponent {
   @Input()
   editMode: boolean;
 
+  @Input()
+  inventory: any;
+
   @Output() edit: EventEmitter<null> = new EventEmitter();
   @Output() delete: EventEmitter<null> = new EventEmitter();
+  @Output() move: EventEmitter<any> = new EventEmitter();
 }

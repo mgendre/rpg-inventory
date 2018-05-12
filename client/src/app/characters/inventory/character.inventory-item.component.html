@@ -16,18 +16,36 @@
       <fa-icon class="icon-legend" [icon]="['fas', 'weight']" *ngIf="item.weight"></fa-icon>
       {{item.weight}}<span *ngIf="item.count">/{{item.weight * item.count  | number:'1.0-2'}}</span>
     </div>
-      <div class="contextual-controls" *ngIf="editMode">
+    <div class="contextual-controls" *ngIf="editMode">
+
+      <div ngbDropdown
+           class="move-dropdown"
+           *ngIf="inventory.categories && inventory.categories.length > 1">
         <fa-icon class="icon-control"
-                 [icon]="['fas', 'edit']"
-                 (click)="edit.emit()">
+                 ngbDropdownToggle
+                 [icon]="['fas', 'share-square']">
         </fa-icon>
-        <fa-icon class="icon-control"
-                 [icon]="['fas', 'trash']"
-                 mwlConfirmationPopover
-                 [popoverTitle]="'Delete this item ?'"
-                 placement="left"
-                 (confirm)="delete.emit()">
-        </fa-icon>
+        <div ngbDropdownMenu>
+          <span>Move to:</span>
+          <button *ngFor="let location of inventory.categories"
+                  class="dropdown-item"
+                  (click)="move.emit(location)">
+            {{location.label}}
+          </button>
+        </div>
+      </div>
+
+      <fa-icon class="icon-control"
+               [icon]="['fas', 'edit']"
+               (click)="edit.emit()">
+      </fa-icon>
+      <fa-icon class="icon-control"
+               [icon]="['fas', 'trash']"
+               mwlConfirmationPopover
+               [popoverTitle]="'Delete this item ?'"
+               placement="left"
+               (confirm)="delete.emit()">
+      </fa-icon>
     </div>
   </div>
   <div class="clearfix"></div>

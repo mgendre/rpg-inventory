@@ -146,3 +146,10 @@
   display: inline-block;
   margin-right: 9px;
 }
+
+.inventory,
+.inventory-item {
+  .move-dropdown {
+    display: inline-block;
+  }
+}

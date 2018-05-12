@@ -204,6 +204,11 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
       this.updateInventoryInternalData();
     }
   }
+  moveCategory(destination, parent, category) {
+    this.deleteCategory(parent, category);
+    destination.categories.push(category);
+    this.updateInventoryInternalData();
+  }
 
   // ITEM MANAGEMENT
 
@@ -242,6 +247,12 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
     if (idx >= 0) {
       parent.items.splice(idx, 1);
     }
+    this.updateInventoryInternalData();
+  }
+
+  moveItem(destination, parent, item) {
+    this.deleteItem(parent, item);
+    destination.items.push(item);
     this.updateInventoryInternalData();
   }
 
