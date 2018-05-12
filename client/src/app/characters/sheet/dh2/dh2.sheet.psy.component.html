@@ -1,7 +1,7 @@
 <form #infoForm="ngForm" class="misc container-fluid">
   <div class="form-group row">
-    <label class="col-lg-6" for="sheet.psy.rating">Psy Rating</label>
-    <rpgi-read-write class="col-lg-6" [readOnlyValue]="sheet.psy.rating">
+    <label class="col-md-6" for="sheet.psy.rating">Psy Rating</label>
+    <rpgi-read-write class="col-md-6" [readOnlyValue]="sheet.psy.rating">
       <input [(ngModel)]="sheet.psy.rating" id="sheet.psy.rating" name="rating"
              step="1"
              class="form-control" type="number"/>
