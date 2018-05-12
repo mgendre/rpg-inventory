@@ -13,8 +13,8 @@
         {{location.label}}
         <div class="location-misc">
           <span class="total-weight">
-            <fa-icon [icon]="['fas', 'weight']"></fa-icon>
-            {{location.totalWeight}}
+            <fa-icon [icon]="['fas', 'weight']"></fa-icon> mnj
+            {{location.totalWeight | number:'1.0-2'}}
           </span>
           <div class="contextual-controls" *ngIf="editMode">
             <fa-icon class="icon-control"

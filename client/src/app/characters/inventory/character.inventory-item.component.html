@@ -14,7 +14,7 @@
     </div>
     <div class="weight">
       <fa-icon class="icon-legend" [icon]="['fas', 'weight']" *ngIf="item.weight"></fa-icon>
-      {{item.weight}}<span *ngIf="item.count">/{{item.weight * item.count}}</span>
+      {{item.weight}}<span *ngIf="item.count">/{{item.weight * item.count  | number:'1.0-2'}}</span>
     </div>
       <div class="contextual-controls" *ngIf="editMode">
         <fa-icon class="icon-control"
