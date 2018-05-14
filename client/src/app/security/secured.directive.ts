@@ -1,4 +1,4 @@
-import {AfterViewInit, Directive, ElementRef, HostBinding, OnDestroy, Renderer2} from '@angular/core';
+import {AfterViewInit, Directive, HostBinding, OnDestroy} from '@angular/core';
 import {Subscription} from "rxjs/Subscription";
 import {SecurityService} from "./security.service";
 

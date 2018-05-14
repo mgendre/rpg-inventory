@@ -36,7 +36,8 @@ class InventoryDataDTO (
 class CategoryDTO(
   val label: String?,
   val categories: List<CategoryDTO>?,
-  val items: List<ItemDTO>?
+  val items: List<ItemDTO>?,
+  val id: String?
 )
 
 class ItemDTO(
@@ -44,5 +45,6 @@ class ItemDTO(
   val weight: Float?,
   val count: Int?,
   val comments: String?,
-  val reference: String?
+  val reference: String?,
+  val id: String?
 )

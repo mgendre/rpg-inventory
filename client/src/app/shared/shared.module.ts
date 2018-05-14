@@ -5,12 +5,18 @@ import {ReadWriteGroupComponent} from "./ui/forms/read-write-group.component";
 import {EditableListComponent} from "./ui/forms/editable-list.component";
 import {FormsModule} from "@angular/forms";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {ExpandableDirective} from "./ui/expandable.directive";
+import {ExpandableToggleComponent} from "./ui/expandable.toggle.component";
+import {ExpandableContentComponent} from "./ui/expandable.content.component";
 
 @NgModule({
   declarations: [
     ReadWriteComponent,
     ReadWriteGroupComponent,
-    EditableListComponent
+    EditableListComponent,
+    ExpandableDirective,
+    ExpandableToggleComponent,
+    ExpandableContentComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +26,10 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
   exports: [
     ReadWriteComponent,
     ReadWriteGroupComponent,
-    EditableListComponent
+    EditableListComponent,
+    ExpandableDirective,
+    ExpandableToggleComponent,
+    ExpandableContentComponent
   ],
   providers: [
   ]

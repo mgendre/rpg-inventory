@@ -19,7 +19,7 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
   editMode = false;
 
   private storeSubscription: Subscription = null;
-  private idCounter = 1000;
+  private idCounter = new Date().getTime();
   private originalInventory = null;
 
   constructor(
@@ -40,8 +40,9 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
       reference: item.reference,
       comments: item.comments,
       weight: item.weight,
-      count: item.count
-    };
+      count: item.count,
+      id: item.id ? item.id : 'item-' + (++this.idCounter)
+    }
   }
 
   private toServerRepresentation(inventory) {
@@ -52,7 +53,8 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
       const serverStorage = {
         items: [],
         categories: [],
-        label: storage.label
+        label: storage.label,
+        id: storage.id ? storage.id : 'location-' + (++this.idCounter)
       };
       serverData.categories.push(serverStorage);
       storage.items.forEach((item) => {
@@ -61,7 +63,8 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
       storage.categories.forEach((category) => {
         const serverCategory = {
           items: [],
-          label: category.label
+          label: category.label,
+          id: category.id ? category.id : 'category-' + (++this.idCounter)
         };
         serverStorage.categories.push(serverCategory);
         category.items.forEach((item) => {
@@ -86,13 +89,13 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
           items: [],
           categories: [],
           type: 'location',
-          id: 'location-' + (++this.idCounter)
+          id: serverStorage.id ? serverStorage.id : 'location-' + (++this.idCounter)
         };
         inventory.categories.push(storage);
 
         if(serverStorage.items) {
           serverStorage.items.forEach((serverItem) => {
-            serverItem.id = 'item-' + (++this.idCounter);
+            serverItem.id = serverItem.id ? serverItem.id : 'item-' + (++this.idCounter);
             serverItem.type = 'item';
             storage.items.push(serverItem);
           });
@@ -104,13 +107,13 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
               items: [],
               categories: [],
               type: 'category',
-              id: 'category-' + (++this.idCounter)
+              id: serverCategory.id ? serverCategory.id : 'category-' + (++this.idCounter)
             };
             storage.categories.push(category);
 
             if(serverCategory.items) {
               serverCategory.items.forEach((serverItem) => {
-                serverItem.id = 'item-' + (++this.idCounter);
+                serverItem.id = serverItem.id ? serverItem.id : 'item-' + (++this.idCounter);
                 serverItem.type = 'item';
                 category.items.push(serverItem);
               });
@@ -157,7 +160,8 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
         type: 'location',
         label: this.storageName,
         categories: [],
-        items: []
+        items: [],
+        expanded: true
       });
     });
   }
@@ -185,7 +189,8 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
         type: 'category',
         label: this.categoryName,
         categories: [],
-        items: []
+        items: [],
+        expanded: true
       });
       this.updateInventoryInternalData();
     });

@@ -1,6 +1,8 @@
 <div class="inventory">
   <div class="element-root" [ngClass]="{'read-only': !editMode}" ngxDroppable="locations" (drop)="dragEnd()">
     <div class="element-location inventory-element"
+         [rpgiExpandable]="location.id"
+         [defaultExpanded]="location.expanded"
          ngxDraggable="locations"
          [moves]="editMode"
          [id]="location.id"
@@ -10,7 +12,7 @@
         <span ngxDragHandle class="drag-handle" *ngIf="editMode">
           <span class="icon"></span>
         </span>
-        {{location.label}}
+        <rpgi-expandable-title>{{location.label}}</rpgi-expandable-title>
         <div class="location-misc">
           <span class="total-weight">
             <fa-icon [icon]="['fas', 'weight']"></fa-icon>
@@ -32,103 +34,109 @@
           </div>
         </div>
       </div>
-      <div class="element-location-content">
-        <div class="element-categories"
-             ngxDroppable="categories"
-             (drop)="dragEnd()">
-          <div class="element-category inventory-element"
-               ngxDraggable="categories"
-               [moves]="editMode"
-               [id]="category.id"
-               *ngFor="let category of location.categories">
-            <div class="element-category-title">
+      <rpgi-expandable-content>
+        <div class="element-location-content">
+          <div class="element-categories"
+               ngxDroppable="categories"
+               (drop)="dragEnd()">
+            <div class="element-category inventory-element"
+                 ngxDraggable="categories"
+                 [rpgiExpandable]="category.id"
+                 [defaultExpanded]="category.expanded"
+                 [moves]="editMode"
+                 [id]="category.id"
+                 *ngFor="let category of location.categories">
+              <div class="element-category-title">
               <span ngxDragHandle class="drag-handle" *ngIf="editMode">
                 <span class="icon"></span>
               </span>
-              {{category.label}}
-              <div class="contextual-controls" *ngIf="editMode">
+                <rpgi-expandable-title>{{category.label}}</rpgi-expandable-title>
+                <div class="contextual-controls" *ngIf="editMode">
 
-                <div ngbDropdown
-                     class="move-dropdown"
-                     *ngIf="inventoryUiData.categories && inventoryUiData.categories.length > 1">
+                  <div ngbDropdown
+                       class="move-dropdown"
+                       *ngIf="inventoryUiData.categories && inventoryUiData.categories.length > 1">
+                    <fa-icon class="icon-control"
+                             ngbDropdownToggle
+                             [icon]="['fas', 'share-square']">
+                    </fa-icon>
+                    <div ngbDropdownMenu>
+                      <span class="title">Move to:</span>
+                      <button *ngFor="let destination of inventoryUiData.categories"
+                              class="dropdown-item"
+                              (click)="moveCategory(destination, location, category)">
+                        {{destination.label}}
+                      </button>
+                    </div>
+                  </div>
+
                   <fa-icon class="icon-control"
-                           ngbDropdownToggle
-                           [icon]="['fas', 'share-square']">
+                           [icon]="['fas', 'edit']"
+                           (click)="editCategory(categoryModal, location, category)">
                   </fa-icon>
-                  <div ngbDropdownMenu>
-                    <span class="title">Move to:</span>
-                    <button *ngFor="let destination of inventoryUiData.categories"
-                            class="dropdown-item"
-                            (click)="moveCategory(destination, location, category)">
-                      {{destination.label}}
-                    </button>
+                  <fa-icon class="icon-control"
+                           [icon]="['fas', 'trash']"
+                           mwlConfirmationPopover
+                           [popoverTitle]="'Delete this category ?'"
+                           [popoverMessage]="'All items will be deleted'"
+                           placement="left"
+                           (confirm)="deleteCategory(location, category)">
+                  </fa-icon>
+                </div>
+              </div>
+              <rpgi-expandable-content>
+                <div class="element-items"
+                     ngxDroppable="items"
+                     (drop)="dragEnd()">
+                  <div class="element-item inventory-element"
+                       ngxDraggable="items"
+                       [moves]="editMode"
+                       [id]="item.id"
+                       *ngFor="let item of category.items">
+                    <rpgi-inventory-item [item]="item"
+                                         [editMode]="editMode"
+                                         [inventory]="inventoryUiData"
+                                         (move)="moveItem($event, category, item)"
+                                         (edit)="editItem(item)"
+                                         (delete)="deleteItem(category, item)">
+                    </rpgi-inventory-item>
                   </div>
                 </div>
-
-                <fa-icon class="icon-control"
-                         [icon]="['fas', 'edit']"
-                         (click)="editCategory(categoryModal, location, category)">
-                </fa-icon>
-                <fa-icon class="icon-control"
-                         [icon]="['fas', 'trash']"
-                         mwlConfirmationPopover
-                         [popoverTitle]="'Delete this category ?'"
-                         [popoverMessage]="'All items will be deleted'"
-                         placement="left"
-                         (confirm)="deleteCategory(location, category)">
-                </fa-icon>
-              </div>
-            </div>
-            <div class="element-items"
-                 ngxDroppable="items"
-                 (drop)="dragEnd()">
-              <div class="element-item inventory-element"
-                   ngxDraggable="items"
-                   [moves]="editMode"
-                   [id]="item.id"
-                   *ngFor="let item of category.items">
-                <rpgi-inventory-item [item]="item"
-                                     [editMode]="editMode"
-                                     [inventory]="inventoryUiData"
-                                     (move)="moveItem($event, category, item)"
-                                     (edit)="editItem(item)"
-                                     (delete)="deleteItem(category, item)">
-                </rpgi-inventory-item>
-              </div>
+              </rpgi-expandable-content>
             </div>
           </div>
-        </div>
-        <div class="clearfix"></div>
-        <div class="element-items"
-             ngxDroppable="items"
-             (drop)="dragEnd()">
+          <div class="clearfix"></div>
+          <div class="element-items"
+               ngxDroppable="items"
+               (drop)="dragEnd()">
 
-          <div class="element-item inventory-element"
-               ngxDraggable="items"
-               [moves]="editMode"
-               [id]="item.id"
-               *ngFor="let item of location.items">
-            <rpgi-inventory-item [item]="item"
-                                 [editMode]="editMode"
-                                 [inventory]="inventoryUiData"
-                                 (move)="moveItem($event, location, item)"
-                                 (edit)="editItem(item)"
-                                 (delete)="deleteItem(location, item)">
-            </rpgi-inventory-item>
+            <div class="element-item inventory-element"
+                 ngxDraggable="items"
+                 [moves]="editMode"
+                 [id]="item.id"
+                 *ngFor="let item of location.items">
+              <rpgi-inventory-item [item]="item"
+                                   [editMode]="editMode"
+                                   [inventory]="inventoryUiData"
+                                   (move)="moveItem($event, location, item)"
+                                   (edit)="editItem(item)"
+                                   (delete)="deleteItem(location, item)">
+              </rpgi-inventory-item>
+            </div>
           </div>
+          <div class="actions pull-right" *ngIf="editMode">
+            <button class="btn btn-primary"
+                    (click)="addItem(location)">
+              Add item
+            </button>
+            <button class="btn btn-primary"
+                    (click)="addCategory(categoryModal, location)">
+              Add category
+            </button>
+          </div>
+          <div class="clearfix"></div>
         </div>
-        <div class="actions pull-right" *ngIf="editMode">
-          <button class="btn btn-primary"
-                  (click)="addItem(location)">
-            Add item
-          </button>
-          <button class="btn btn-primary"
-                  (click)="addCategory(categoryModal, location)">
-            Add category
-          </button>
-        </div>
-        <div class="clearfix"></div>
-      </div>
+      </rpgi-expandable-content>
     </div>
   </div>
 
