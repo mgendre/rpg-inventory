@@ -1,7 +1,6 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~@swimlane/ngx-dnd/release/index.css";
 @import "variables";
-
 @import "../app/characters/sheet/character.sheet";
 
 body, html {
@@ -96,7 +95,7 @@ html {
     }
   }
 
-  .form-control{
+  .form-control {
     &.ng-invalid.ng-touched {
       border-color: red;
 

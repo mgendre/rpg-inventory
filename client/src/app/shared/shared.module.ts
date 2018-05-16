@@ -8,6 +8,8 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {ExpandableDirective} from "./ui/expandable.directive";
 import {ExpandableToggleComponent} from "./ui/expandable.toggle.component";
 import {ExpandableContentComponent} from "./ui/expandable.content.component";
+import {ApplicationLoaderComponent} from 'app/shared/ui/loader/application-loader.component';
+import {LoaderService} from "./ui/loader/loader.service";
 
 @NgModule({
   declarations: [
@@ -16,7 +18,8 @@ import {ExpandableContentComponent} from "./ui/expandable.content.component";
     EditableListComponent,
     ExpandableDirective,
     ExpandableToggleComponent,
-    ExpandableContentComponent
+    ExpandableContentComponent,
+    ApplicationLoaderComponent
   ],
   imports: [
     CommonModule,
@@ -29,9 +32,11 @@ import {ExpandableContentComponent} from "./ui/expandable.content.component";
     EditableListComponent,
     ExpandableDirective,
     ExpandableToggleComponent,
-    ExpandableContentComponent
+    ExpandableContentComponent,
+    ApplicationLoaderComponent
   ],
   providers: [
+    LoaderService
   ]
 })
 export class SharedModule {

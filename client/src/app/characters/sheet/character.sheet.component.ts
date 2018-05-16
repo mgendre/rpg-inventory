@@ -3,6 +3,7 @@ import {Subscription} from "rxjs/Subscription";
 import {Character} from "../../api/characters-api.service";
 import {CharacterDataStoreService} from "../character-datastore";
 import * as _ from "lodash";
+import {LoaderService} from "../../shared/ui/loader/loader.service";
 
 @Component({
   selector: 'rpgi-character-sheet',
@@ -19,12 +20,17 @@ export class CharacterSheetComponent implements OnInit, OnDestroy {
   private storeSubscription: Subscription = null;
 
   constructor(
-    private characterDataStore: CharacterDataStoreService
+    private characterDataStore: CharacterDataStoreService,
+    private loaderService: LoaderService
   ){}
 
   save() {
+    this.loaderService.setLoading(true);
     this.characterDataStore.saveSheet(this.sheet).then(() => {
       this.editMode = false;
+      this.loaderService.setLoading(false);
+    }).catch(() => {
+      this.loaderService.setLoading(false);
     });
   }
 

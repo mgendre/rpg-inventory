@@ -6,6 +6,7 @@ import * as _ from "lodash";
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {CharacterInventoryItemEditComponent} from "./character.inventory-item-edit.component";
 import {InventoryItem} from "./inventory-data";
+import {LoaderService} from "../../shared/ui/loader/loader.service";
 
 @Component({
   selector: 'rpgi-character-inventory',
@@ -25,7 +26,8 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
   constructor(
     private characterDataStore: CharacterDataStoreService,
     private elementRef: ElementRef,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private loaderService: LoaderService
   ) {
   }
 
@@ -127,11 +129,15 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
 
   save() {
     const serverData = this.toServerRepresentation(this.inventoryUiData);
+    this.loaderService.setLoading(true);
     this.characterDataStore.saveInventory({
       id: this.originalInventory ? this.originalInventory.id : null,
       inventory: serverData
     }).then(() => {
       this.editMode = false;
+      this.loaderService.setLoading(false);
+    }).catch(() => {
+      this.loaderService.setLoading(false);
     });
   }
 
