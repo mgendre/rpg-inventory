@@ -98,7 +98,8 @@
                                          [inventory]="inventoryUiData"
                                          (move)="moveItem($event, category, item)"
                                          (edit)="editItem(item)"
-                                         (delete)="deleteItem(category, item)">
+                                         (delete)="deleteItem(category, item)"
+                                         (updateCount)="updateItemCount($event, item)">
                     </rpgi-inventory-item>
                   </div>
                 </div>
@@ -120,7 +121,8 @@
                                    [inventory]="inventoryUiData"
                                    (move)="moveItem($event, location, item)"
                                    (edit)="editItem(item)"
-                                   (delete)="deleteItem(location, item)">
+                                   (delete)="deleteItem(location, item)"
+                                   (updateCount)="updateItemCount($event, item)">
               </rpgi-inventory-item>
             </div>
           </div>

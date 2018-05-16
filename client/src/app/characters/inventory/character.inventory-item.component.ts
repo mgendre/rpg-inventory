@@ -19,4 +19,5 @@ export class CharacterInventoryItemComponent {
   @Output() edit: EventEmitter<null> = new EventEmitter();
   @Output() delete: EventEmitter<null> = new EventEmitter();
   @Output() move: EventEmitter<any> = new EventEmitter();
+  @Output() updateCount: EventEmitter<any> = new EventEmitter();
 }

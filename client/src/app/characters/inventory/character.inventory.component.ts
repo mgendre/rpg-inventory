@@ -267,6 +267,11 @@ export class CharacterInventoryComponent implements OnInit, OnDestroy {
     this.updateInventoryInternalData();
   }
 
+  updateItemCount(newCount: number, item: any) {
+    item.count = newCount;
+    this.save();
+  }
+
   // -------------------------------------------------------------------------------------------------------------------
   // DRAG AND DROP SUPPORT
   // -------------------------------------------------------------------------------------------------------------------

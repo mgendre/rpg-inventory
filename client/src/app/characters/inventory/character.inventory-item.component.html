@@ -9,8 +9,26 @@
       {{item.reference}}
     </div>
     <div class="count">
-      <fa-icon class="icon-legend" [icon]="['fas', 'hashtag']" *ngIf="item.count"></fa-icon>
-      {{item.count}}
+      <div ngbDropdown
+           class="count-dropdown">
+        <span class="count-action" ngbDropdownToggle>
+          <fa-icon class="icon-legend" [icon]="['fas', 'hashtag']"></fa-icon>
+          {{item.count}}
+        </span>
+        <div ngbDropdownMenu>
+          <span class="title">Change count</span>
+          <button class="dropdown-item"
+                  (click)="updateCount.emit(item.count +1)">
+            +1
+          </button>
+          <button class="dropdown-item"
+                  *ngIf="item.count > 0"
+                  (click)="updateCount.emit(item.count -1)">
+            -1
+          </button>
+        </div>
+      </div>
+
     </div>
     <div class="weight">
       <span *ngIf="item.weight && item.weight > 0">
