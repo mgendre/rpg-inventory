@@ -3,7 +3,7 @@ import {Component} from '@angular/core';
 @Component({
   selector: 'rpgi-login',
   templateUrl: './login.component.html',
-  styleUrls: []
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
 
