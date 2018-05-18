@@ -1,0 +1,28 @@
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+  <changeSet author="mg" id="03a_biography">
+    <createTable tableName="character_biographies">
+      <column name="id" type="bigint" autoIncrement="true">
+        <constraints primaryKey="true"
+                     primaryKeyName="media_pk"
+                     nullable="false"/>
+      </column>
+      <column name="portrait_id" type="bigint"/>
+      <column name="picture_id" type="bigint"/>
+    </createTable>
+    <addForeignKeyConstraint baseTableName="character_biographies"
+                             baseColumnNames="portrait_id"
+                             referencedTableName="media"
+                             referencedColumnNames="id"
+                             constraintName="fk_portrait_media_id"/>
+    <addForeignKeyConstraint baseTableName="character_biographies"
+                             baseColumnNames="picture_id"
+                             referencedTableName="media"
+                             referencedColumnNames="id"
+                             constraintName="fk_picture_media_id"/>
+  </changeSet>
+</databaseChangeLog>

@@ -30,4 +30,10 @@ class MediaService(val mediaRepository: MediaRepository,
     }
     return media
   }
+
+  fun deleteMedia(mediaId: Long?) {
+    if (mediaId != null) {
+      mediaRepository.delete(checkMediaSecurity(mediaId))
+    }
+  }
 }
