@@ -10,6 +10,8 @@ import {ExpandableToggleComponent} from "./ui/expandable.toggle.component";
 import {ExpandableContentComponent} from "./ui/expandable.content.component";
 import {ApplicationLoaderComponent} from 'app/shared/ui/loader/application-loader.component';
 import {LoaderService} from "./ui/loader/loader.service";
+import {UploadComponent} from "./ui/upload/upload.component";
+import {NgUploaderModule} from "ngx-uploader";
 
 @NgModule({
   declarations: [
@@ -19,12 +21,14 @@ import {LoaderService} from "./ui/loader/loader.service";
     ExpandableDirective,
     ExpandableToggleComponent,
     ExpandableContentComponent,
-    ApplicationLoaderComponent
+    ApplicationLoaderComponent,
+    UploadComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgUploaderModule
   ],
   exports: [
     ReadWriteComponent,
@@ -33,7 +37,8 @@ import {LoaderService} from "./ui/loader/loader.service";
     ExpandableDirective,
     ExpandableToggleComponent,
     ExpandableContentComponent,
-    ApplicationLoaderComponent
+    ApplicationLoaderComponent,
+    UploadComponent
   ],
   providers: [
     LoaderService

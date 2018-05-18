@@ -1,0 +1,84 @@
+@import "../../../../styles/variables";
+
+.drop-container {
+  background: white;
+  border-radius: 2px;
+  height: 60px;
+  width: 100%;
+  box-shadow: 1px 2px 20px rgba(black, 0.1);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed $colorMain3;
+  font-size: 16px;
+  font-weight: bold;
+  color: $defaultFontColor;
+
+  .upload-button {
+    display: inline-block;
+    margin-left: 10px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: $colorActive;
+    input {
+      display: none;
+    }
+  }
+}
+
+.is-drop-over {
+  border-color: $colorActive;
+}
+
+.upload-items {
+  display: block;
+  width: 100%;
+
+  .upload-item {
+    width: 100%;
+    display: block;
+    margin-top: 20px;
+  }
+
+  .filename {
+    display: block;
+    padding: 0 0 5px 5px;
+    color: $defaultFontColor;
+  }
+
+  .progress {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 15px;
+    border: 1px solid $colorActive;
+    border-radius: 2px;
+  }
+
+  .bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 15px;
+    background: $colorMain1;
+  }
+}
+
+.loading {
+  .pct {
+    display: inline-block;
+    width: 50px;
+    text-align: center;
+  }
+  .help {
+    display: none;
+  }
+  .progress-box {
+    display: block;
+  }
+}
+.progress-box {
+  display: none;
+}

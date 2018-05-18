@@ -8,11 +8,13 @@ import {NgxDnDModule} from "@swimlane/ngx-dnd";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {SharedModule} from "./shared/shared.module";
 import {ConfirmationPopoverModule} from "angular-confirmation-popover";
+import {NgUploaderModule} from 'ngx-uploader';
 
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {fas} from '@fortawesome/free-solid-svg-icons';
 import {far} from '@fortawesome/free-regular-svg-icons';
 import {fab} from '@fortawesome/free-brands-svg-icons';
+
 library.add(fas, far, fab);
 
 @NgModule({
@@ -28,7 +30,8 @@ library.add(fas, far, fab);
     SharedModule,
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger' // set defaults here
-    })
+    }),
+    NgUploaderModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -40,12 +43,11 @@ library.add(fas, far, fab);
     NgxDnDModule,
     NgbModule,
     SharedModule,
-    ConfirmationPopoverModule
+    ConfirmationPopoverModule,
+    NgUploaderModule
   ],
-  providers: [
-  ],
-  declarations: [
-  ]
+  providers: [],
+  declarations: []
 })
 export class AppCommonModule {
 

@@ -1,0 +1,26 @@
+<div class="uploader">
+  <div class="drop-container"
+       ngFileDrop
+       [options]="options"
+       (uploadOutput)="onUploadOutput($event)"
+       [uploadInput]="uploadInput"
+       [ngClass]="{ 'is-drop-over': dragOver, loading: loading === true}">
+    <div class="help">
+      <label>Drag &amp; Drop</label>
+      <label class="upload-button">
+        <input type="file"
+               ngFileSelect
+               [options]="options"
+               (uploadOutput)="onUploadOutput($event)"
+               [uploadInput]="uploadInput"
+               multiple />
+        or choose file
+      </label>
+    </div>
+    <div class="progress-box">
+      <h5>Uploading <span class="pct">
+        <span *ngIf="!progress?.data?.percentage">0</span>
+        {{progress?.data?.percentage}}%</span>...</h5>
+    </div>
+  </div>
+</div>

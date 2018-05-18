@@ -1,31 +1,32 @@
-import {Component, EventEmitter, OnDestroy, OnInit} from '@angular/core';
-import {Subscription} from "rxjs/Subscription";
-import {Character} from "../../api/characters-api.service";
-import {CharacterDataStoreService} from "../character-datastore";
-import {UploaderOptions, UploadFile, UploadInput, UploadOutput} from "ngx-uploader";
+import {Component, EventEmitter, Output} from '@angular/core';
+import {UploaderOptions, UploadFile, UploadInput, UploadOutput, UploadProgress} from "ngx-uploader";
+import {Media} from "../../data/media";
 
 @Component({
-  selector: 'rpgi-character-biography',
-  templateUrl: './character.biography.component.html',
-  styleUrls: []
+  selector: 'rpgi-upload',
+  templateUrl: './upload.component.html',
+  styleUrls: ['./upload.component.scss']
 })
-export class CharacterBiographyComponent implements OnInit, OnDestroy {
+export class UploadComponent {
 
-  character: Character = null;
   options: UploaderOptions;
   files: UploadFile[] = [];
-  dragOver: boolean;
-  uploadInput: EventEmitter<UploadInput>;
-  private storeSubscription: Subscription = null;
+  dragOver: boolean = false;
+  uploadInput: EventEmitter<UploadInput> = new EventEmitter<UploadInput>();
+  loading = false;
+  progress: UploadProgress;
 
-  constructor(
-    private characterDataStore: CharacterDataStoreService
-  ) {
+  @Output() onUploadSuccess = new EventEmitter<Media>();
+
+  private onUploadDone() {
+    this.loading = false;
+    this.files = [];
+    this.progress = null;
   }
 
   onUploadOutput(output: UploadOutput): void {
     if (output.type === 'allAddedToQueue') {
-      // when all files added in queue
+      this.loading = true;
       const event: UploadInput = {
         type: 'uploadAll',
         url: '/api/v1/media/upload',
@@ -38,6 +39,7 @@ export class CharacterBiographyComponent implements OnInit, OnDestroy {
       // update current data in files array for uploading file
       const index = this.files.findIndex(file => typeof output.file !== 'undefined' && file.id === output.file.id);
       this.files[index] = output.file;
+      this.progress = output.file.progress;
     } else if (output.type === 'removed') {
       // remove file from array when removed
       this.files = this.files.filter((file: UploadFile) => file !== output.file);
@@ -47,20 +49,15 @@ export class CharacterBiographyComponent implements OnInit, OnDestroy {
       this.dragOver = false;
     } else if (output.type === 'drop') {
       this.dragOver = false;
+    } else if (output.type === 'done') {
+      const media = new Media();
+      media.contentType = output.file.response.contentType;
+      media.filename = output.file.response.filename;
+      media.id = output.file.response.id;
+      this.onUploadSuccess.emit(media);
+      this.onUploadDone();
+    } else if (output.type === 'rejected' || output.type === 'cancelled') {
+      this.onUploadDone();
     }
-  }
-
-
-  ngOnInit(): void {
-    this.storeSubscription = this.characterDataStore.getCharacterStore().subscribe((chr) => {
-      this.character = null;
-      if (chr) {
-        this.character = chr.character;
-      }
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.storeSubscription.unsubscribe();
   }
 }

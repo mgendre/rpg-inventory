@@ -31,7 +31,7 @@ class CharacterService(val characterRepository: CharacterRepository,
     val character = characterRepository.getOne(characterId)
     if (character.user.id != userService.getCurrentUserId()) {
       throw DataNotFoundException(
-        "User $characterId is not authorized to access character owned by ${character.user.id}")
+        "User is not authorized to access character $characterId owned by ${character.user.id}")
     }
     return character
   }
