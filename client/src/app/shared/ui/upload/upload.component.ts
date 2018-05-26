@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {UploaderOptions, UploadFile, UploadInput, UploadOutput, UploadProgress} from "ngx-uploader";
 import {Media} from "../../data/media";
 
@@ -18,6 +18,8 @@ export class UploadComponent {
 
   @Output() onUploadSuccess = new EventEmitter<Media>();
 
+  @Input() type: String;
+
   private onUploadDone() {
     this.loading = false;
     this.files = [];
@@ -29,7 +31,7 @@ export class UploadComponent {
       this.loading = true;
       const event: UploadInput = {
         type: 'uploadAll',
-        url: '/api/v1/media/upload',
+        url: `/api/v1/media/upload/${this.type}`,
         method: 'POST'
       };
       this.uploadInput.emit(event);

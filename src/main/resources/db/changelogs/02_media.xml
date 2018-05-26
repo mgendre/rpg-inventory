@@ -23,6 +23,15 @@
       <column name="data" type="blob">
         <constraints nullable="false"/>
       </column>
+      <column name="creation_date" type="timestamptz">
+        <constraints nullable="false"/>
+      </column>
+      <column name="confirmed" type="boolean">
+        <constraints nullable="false"/>
+      </column>
+      <column name="type" type="varchar(50)">
+        <constraints nullable="false"/>
+      </column>
     </createTable>
     <addForeignKeyConstraint baseTableName="media"
                              baseColumnNames="user_id"

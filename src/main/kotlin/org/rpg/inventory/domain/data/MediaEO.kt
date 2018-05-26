@@ -1,6 +1,8 @@
 package org.rpg.inventory.domain.data
 
 import org.hibernate.validator.constraints.Length
+import org.rpg.inventory.domain.data.enums.MediaType
+import java.time.ZonedDateTime
 import javax.persistence.*
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
@@ -25,9 +27,21 @@ class MediaEO(
   @Size(max = 50 * 1024 * 1024)
   @NotNull
   @Lob
-  @Column(nullable = false)
-  val data: ByteArray
+  @Column(name = "data", nullable = false)
+  val data: ByteArray,
 
+  @NotNull
+  @Column(name = "creation_date", nullable = false)
+  val creationDate: ZonedDateTime,
+
+  @NotNull
+  @Column(name = "confirmed", nullable = false)
+  var confirmed: Boolean,
+
+  @NotNull
+  @Enumerated(EnumType.STRING)
+  @Column(name = "type", nullable = false)
+  val type: MediaType
 ) {
   @NotNull
   @ManyToOne

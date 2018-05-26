@@ -25,6 +25,9 @@ export class CharacterDataStoreService {
       }),
       this.charactersApi.getSheet(id).then((sheet) => {
         newChar.sheet = sheet;
+      }),
+      this.charactersApi.getBiography(id).then((bio) => {
+        newChar.biography = bio;
       })
     ]).then(() => {
       this.characterStore.next(newChar);
@@ -47,6 +50,14 @@ export class CharacterDataStoreService {
     });
   }
 
+  public saveBiography(bio: any) {
+    return this.charactersApi.saveBiography(this.characterId, bio).then((bio) => {
+      const chr = this.characterStore.getValue();
+      chr.biography = bio;
+      this.characterStore.next(chr);
+    });
+  }
+
   public getCharacterStore(): BehaviorSubject<FullCharacter> {
     return this.characterStore;
   }
@@ -56,4 +67,5 @@ export class FullCharacter {
   public character: Character = null;
   public inventory: any = null;
   public sheet: any = null;
+  public biography: any = null;
 }

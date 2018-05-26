@@ -8,11 +8,14 @@
     <createTable tableName="character_biographies">
       <column name="id" type="bigint" autoIncrement="true">
         <constraints primaryKey="true"
-                     primaryKeyName="media_pk"
+                     primaryKeyName="character_biography_pk"
                      nullable="false"/>
       </column>
       <column name="portrait_id" type="bigint"/>
       <column name="picture_id" type="bigint"/>
+      <column name="character_id" type="bigint">
+        <constraints nullable="false"/>
+      </column>
     </createTable>
     <addForeignKeyConstraint baseTableName="character_biographies"
                              baseColumnNames="portrait_id"
@@ -24,5 +27,10 @@
                              referencedTableName="media"
                              referencedColumnNames="id"
                              constraintName="fk_picture_media_id"/>
+    <addForeignKeyConstraint baseTableName="character_biographies"
+                             baseColumnNames="character_id"
+                             referencedTableName="characters"
+                             referencedColumnNames="id"
+                             constraintName="fk_character_biographies_characters_id"/>
   </changeSet>
 </databaseChangeLog>

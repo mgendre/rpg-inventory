@@ -6,6 +6,6 @@
 
   <include file="changelogs/01_users-inventory.xml" relativeToChangelogFile="true"/>
   <include file="changelogs/02_media.xml" relativeToChangelogFile="true"/>
-  <include file="changelogs/03_biographies.xml" relativeToChangelogFile="true"/>
+  <include file="changelogs/03_biography.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

@@ -1,5 +1,26 @@
 <div class="biography">
   Biography (Coming soon)
 
-  <rpgi-upload (onUploadSuccess)="portraitUploaded($event)"></rpgi-upload>
+  <rpgi-upload (onUploadSuccess)="portraitUploaded($event)" type="character_portrait"></rpgi-upload>
+
+  <div class="page-controls">
+    <button type="button"
+            *ngIf="editMode"
+            class="btn btn-default"
+            (click)="cancel()">
+      Cancel
+    </button>
+    <button type="button"
+            *ngIf="editMode"
+            class="btn btn-primary pull-right"
+            (click)="save()">
+      Save
+    </button>
+    <button type="button"
+            *ngIf="!editMode"
+            class="btn btn-primary pull-right"
+            (click)="edit()">
+      Modify
+    </button>
+  </div>
 </div>

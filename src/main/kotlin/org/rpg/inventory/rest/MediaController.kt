@@ -1,6 +1,7 @@
 package org.rpg.inventory.rest
 
 import org.rpg.inventory.domain.data.MediaEO
+import org.rpg.inventory.domain.data.enums.MediaType
 import org.rpg.inventory.dto.MediaDTO
 import org.rpg.inventory.rest.util.ResponseUtils
 import org.rpg.inventory.service.MediaService
@@ -8,6 +9,7 @@ import org.rpg.inventory.service.UserService
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
+import java.time.ZonedDateTime
 import javax.servlet.http.HttpServletResponse
 
 
@@ -17,13 +19,17 @@ import javax.servlet.http.HttpServletResponse
 class MediaController(val mediaService: MediaService,
                       val userService: UserService
 ) {
-  @PostMapping("/upload")
-  fun upload(@RequestParam("file") file: MultipartFile): MediaDTO {
+  @PostMapping(value = "/upload/{type}")
+  fun upload(@RequestParam("file") file: MultipartFile,
+             @PathVariable(value = "type", required = true, name = "type") type: String): MediaDTO {
     val eo = MediaEO(
       id = null,
       filename = if (file.originalFilename != null) file.originalFilename else "",
       contentType = if (file.contentType != null) file.contentType else "image/jpeg",
-      data = file.bytes
+      data = file.bytes,
+      creationDate = ZonedDateTime.now(),
+      confirmed = false,
+      type = MediaType.valueOf(type.toUpperCase())
     )
     eo.user = userService.getCurrentUser()
 
