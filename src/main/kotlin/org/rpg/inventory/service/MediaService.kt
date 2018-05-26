@@ -3,16 +3,21 @@ package org.rpg.inventory.service
 import org.rpg.inventory.domain.data.MediaEO
 import org.rpg.inventory.domain.repository.MediaRepository
 import org.rpg.inventory.error.DataNotFoundException
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Propagation
 import org.springframework.transaction.annotation.Transactional
+import java.io.File
 import java.time.ZonedDateTime
+import javax.annotation.PostConstruct
 
 @Service
 @Transactional
 class MediaService(val mediaRepository: MediaRepository,
-                   val userService: UserService) {
+                   val userService: UserService,
+                   @Value("\${spring.servlet.multipart.location}")
+                   val multipartLocation: String) {
 
   fun save(media: MediaEO): MediaEO {
     if (media.id != null) {
@@ -54,5 +59,10 @@ class MediaService(val mediaRepository: MediaRepository,
     // Remove all media that are unconfirmed after 1 hour...
     val toDelete = mediaRepository.findByConfirmedFalseAndCreationDateBefore(ZonedDateTime.now().minusHours(1))
     mediaRepository.deleteAll(toDelete)
+  }
+
+  @PostConstruct
+  fun init() {
+    File(multipartLocation).mkdirs()
   }
 }

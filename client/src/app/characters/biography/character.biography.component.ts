@@ -8,7 +8,7 @@ import {LoaderService} from "../../shared/ui/loader/loader.service";
 @Component({
   selector: 'rpgi-character-biography',
   templateUrl: './character.biography.component.html',
-  styleUrls: []
+  styleUrls: ['./character.biography.component.scss']
 })
 export class CharacterBiographyComponent implements OnInit, OnDestroy {
 
@@ -47,6 +47,10 @@ export class CharacterBiographyComponent implements OnInit, OnDestroy {
     this.bio.portraitMediaId = media.id;
   }
 
+  pictureUploaded(media) {
+    this.bio.pictureMediaId = media.id;
+  }
+
   ngOnInit(): void {
     this.storeSubscription = this.characterDataStore.getCharacterStore().subscribe((chr) => {
       this.character = null;
@@ -55,9 +59,7 @@ export class CharacterBiographyComponent implements OnInit, OnDestroy {
 
         this.bio = chr.biography;
         if (!this.bio) {
-          this.bio = {
-
-          };
+          this.bio = {};
         }
 
         this.originalBio = _.cloneDeep(this.bio);

@@ -12,6 +12,7 @@ import {ApplicationLoaderComponent} from 'app/shared/ui/loader/application-loade
 import {LoaderService} from "./ui/loader/loader.service";
 import {UploadComponent} from "./ui/upload/upload.component";
 import {NgUploaderModule} from "ngx-uploader";
+import {MediaImageComponent} from "./ui/media/media-image.component";
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {NgUploaderModule} from "ngx-uploader";
     ExpandableToggleComponent,
     ExpandableContentComponent,
     ApplicationLoaderComponent,
+    MediaImageComponent,
     UploadComponent
   ],
   imports: [
@@ -38,6 +40,7 @@ import {NgUploaderModule} from "ngx-uploader";
     ExpandableToggleComponent,
     ExpandableContentComponent,
     ApplicationLoaderComponent,
+    MediaImageComponent,
     UploadComponent
   ],
   providers: [

@@ -27,10 +27,10 @@ class CharacterBiographyService(val characterService: CharacterService,
 
     // Confirm new media
     if (bio.picture != null) {
-      mediaService.setConfirmed(existing.picture!!.id!!, true)
+      mediaService.setConfirmed(bio.picture!!.id!!, true)
     }
     if (bio.portrait != null) {
-      mediaService.setConfirmed(existing.portrait!!.id!!, true)
+      mediaService.setConfirmed(bio.portrait!!.id!!, true)
     }
 
     return characterBiographyRepository.save(bio)

@@ -7,11 +7,12 @@ import {ActivatedRoute} from "@angular/router";
 @Component({
   selector: 'rpgi-character',
   templateUrl: './character.component.html',
-  styleUrls: []
+  styleUrls: ['./character.component.scss']
 })
 export class CharacterComponent implements OnInit, OnDestroy {
 
   character: Character = null;
+  biography = null;
 
   private routeSubscription: Subscription = null;
   private storeSubscription: Subscription = null;
@@ -26,6 +27,7 @@ export class CharacterComponent implements OnInit, OnDestroy {
       this.character = null;
       if (chr) {
         this.character = chr.character;
+        this.biography = chr.biography;
       }
     });
     this.routeSubscription = this.route.params.subscribe(params => {

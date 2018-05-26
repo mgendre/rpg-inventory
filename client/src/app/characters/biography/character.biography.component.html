@@ -1,7 +1,38 @@
-<div class="biography">
-  Biography (Coming soon)
+<div class="biography container">
+  <rpgi-read-write-group [writeMode]="editMode">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">{{character.name}}</h3>
+        <div class="row">
+          <div class="col-md-4">
+            <rpgi-media-image [mediaId]="bio?.portraitMediaId"
+                              mode="fill"
+                              class="portrait">
+            </rpgi-media-image>
+            <rpgi-upload (onUploadSuccess)="portraitUploaded($event)"
+                         type="character_portrait"
+                         *ngIf="editMode"></rpgi-upload>
+          </div>
+          <div class="col-md-8">
 
-  <rpgi-upload (onUploadSuccess)="portraitUploaded($event)" type="character_portrait"></rpgi-upload>
+          </div>
+        </div>
+
+        <div class="row picture-container">
+          <div class="col-md-12">
+            <h5>Picture / theme</h5>
+            <rpgi-media-image [mediaId]="bio?.pictureMediaId"
+                              mode="fit"
+                              class="picture">
+            </rpgi-media-image>
+            <rpgi-upload (onUploadSuccess)="pictureUploaded($event)"
+                         type="character_picture"
+                         *ngIf="editMode"></rpgi-upload>
+          </div>
+        </div>
+      </div>
+    </div>
+  </rpgi-read-write-group>
 
   <div class="page-controls">
     <button type="button"

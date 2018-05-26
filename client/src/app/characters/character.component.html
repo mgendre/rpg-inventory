@@ -2,6 +2,10 @@
   <div class="sub-navbar">
     <div class="title">{{character.name}}</div>
     <div class="actions">
+      <a [routerLink]="['/characters', character.id, 'edit']"
+         class="activate-button">
+        <fa-icon [icon]="['fas', 'edit']"></fa-icon>
+      </a>
       <a [routerLink]="['/characters']"
          class="activate-button">
         <fa-icon [icon]="['fas', 'sign-out-alt']"></fa-icon>
@@ -31,7 +35,9 @@
       <fa-icon [icon]="['fas', 'book']"></fa-icon>
     </a>
   </div>
-
+  <div class="character-theme-picture" *ngIf="biography?.pictureMediaId">
+    <rpgi-media-image mode="fill" [mediaId]="biography?.pictureMediaId"></rpgi-media-image>
+  </div>
   <div class="container-with-vertical-actions">
     <router-outlet></router-outlet>
   </div>

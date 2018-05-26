@@ -114,12 +114,14 @@ html {
     top: $navbarHeight + $subNavbarHeight;
     left: 0;
     bottom: 0;
+    z-index: 1;
   }
 
   .container-with-vertical-actions {
     margin-top: $subNavbarHeight;
     margin-left: $verticalActionsWidth;
     padding: 50px 50px 100px;
+    position: relative;
   }
 
   .activate-button {
@@ -141,6 +143,15 @@ html {
   .activate-button.active {
     color: white;
     background: $colorActive;
+  }
+
+  .sub-navbar {
+    .activate-button {
+      border-top-width: 0;
+      border-bottom-width: 0;
+      border-left: 1px solid $colorSeparator;
+      float: left;
+    }
   }
 
   .contextual-controls {
